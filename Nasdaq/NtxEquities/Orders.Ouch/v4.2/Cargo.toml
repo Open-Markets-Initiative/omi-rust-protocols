@@ -1,0 +1,11 @@
+[package]
+name = "nasdaq-ntxequities-orders-ouch-v4-2"
+version = "1.0.0"
+edition = "2024"
+description = "Nasdaq.NtxEquities.Orders.Ouch.v4.2 message parsers"
+license-file = "../../../../LICENSE"
+publish = false
+
+[features]
+default = ["owned"]
+owned = []

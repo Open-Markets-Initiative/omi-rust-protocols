@@ -1,0 +1,18 @@
+[package]
+name = "nasdaq-ntxequities-totalview-itch-v5-0"
+version = "1.0.0"
+edition = "2024"
+description = "Nasdaq.NtxEquities.TotalView.Itch.v5.0 message parsers"
+license-file = "../../../../LICENSE"
+publish = false
+
+[features]
+default = ["owned"]
+owned = []
+
+[dev-dependencies]
+omi-pcap-test = { path = "../../../../omi-pcap-test" }
+
+[[bench]]
+name = "messages"
+harness = false

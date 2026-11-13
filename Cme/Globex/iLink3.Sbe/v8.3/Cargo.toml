@@ -1,0 +1,11 @@
+[package]
+name = "cme-globex-ilink3-sbe-v8-3"
+version = "1.0.0"
+edition = "2024"
+description = "Cme.Globex.iLink3.Sbe.v8.3 message parsers"
+license-file = "../../../../LICENSE"
+publish = false
+
+[features]
+default = ["owned"]
+owned = []

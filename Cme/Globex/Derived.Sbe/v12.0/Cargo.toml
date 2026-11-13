@@ -1,0 +1,11 @@
+[package]
+name = "cme-globex-derived-sbe-v12-0"
+version = "1.0.0"
+edition = "2024"
+description = "Cme.Globex.Derived.Sbe.v12.0 message parsers"
+license-file = "../../../../LICENSE"
+publish = false
+
+[features]
+default = ["owned"]
+owned = []

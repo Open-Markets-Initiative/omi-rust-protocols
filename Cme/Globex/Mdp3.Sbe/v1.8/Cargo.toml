@@ -1,0 +1,18 @@
+[package]
+name = "cme-globex-mdp3-sbe-v1-8"
+version = "1.0.0"
+edition = "2024"
+description = "Cme.Globex.Mdp3.Sbe.v1.8 message parsers"
+license-file = "../../../../LICENSE"
+publish = false
+
+[features]
+default = ["owned"]
+owned = []
+
+[dev-dependencies]
+omi-pcap-test = { path = "../../../../omi-pcap-test" }
+
+[[bench]]
+name = "messages"
+harness = false

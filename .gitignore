@@ -1,0 +1,5 @@
+# Rust build output
+/target/
+
+# Lockfile — regenerated; crates are libraries with no external dependencies
+Cargo.lock

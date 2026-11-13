@@ -1,0 +1,11 @@
+[package]
+name = "nasdaq-nsmequities-totalview-itch-v4-1"
+version = "1.0.0"
+edition = "2024"
+description = "Nasdaq.NsmEquities.TotalView.Itch.v4.1 message parsers"
+license-file = "../../../../LICENSE"
+publish = false
+
+[features]
+default = ["owned"]
+owned = []

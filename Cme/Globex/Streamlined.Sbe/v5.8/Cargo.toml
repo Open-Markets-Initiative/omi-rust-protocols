@@ -1,0 +1,11 @@
+[package]
+name = "cme-globex-streamlined-sbe-v5-8"
+version = "1.0.0"
+edition = "2024"
+description = "Cme.Globex.Streamlined.Sbe.v5.8 message parsers"
+license-file = "../../../../LICENSE"
+publish = false
+
+[features]
+default = ["owned"]
+owned = []

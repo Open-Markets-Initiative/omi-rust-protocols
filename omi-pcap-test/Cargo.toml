@@ -1,0 +1,7 @@
+[package]
+name = "omi-pcap-test"
+version = "1.0.0"
+edition = "2024"
+description = "Test support: capture reading and payload extraction for generated protocol tests"
+license-file = "../LICENSE"
+publish = false
