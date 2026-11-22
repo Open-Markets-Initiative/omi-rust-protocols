@@ -39,43 +39,11 @@ impl ExecInst {
         self.0 & 0x4 != 0
     }
 
-    /// Exec Inst Reserved 1 (bit 3)
-    /// Reserved1
+    /// Reserved 4 To 8 (bits 3..8)
+    /// 5 reserved bits
     #[inline]
     #[must_use]
-    pub const fn exec_inst_reserved_1(&self) -> bool {
-        self.0 & 0x8 != 0
-    }
-
-    /// Exec Inst Reserved 2 (bit 4)
-    /// Reserved2
-    #[inline]
-    #[must_use]
-    pub const fn exec_inst_reserved_2(&self) -> bool {
-        self.0 & 0x10 != 0
-    }
-
-    /// Exec Inst Reserved 3 (bit 5)
-    /// Reserved3
-    #[inline]
-    #[must_use]
-    pub const fn exec_inst_reserved_3(&self) -> bool {
-        self.0 & 0x20 != 0
-    }
-
-    /// Exec Inst Reserved 4 (bit 6)
-    /// Reserved4
-    #[inline]
-    #[must_use]
-    pub const fn exec_inst_reserved_4(&self) -> bool {
-        self.0 & 0x40 != 0
-    }
-
-    /// Exec Inst Reserved 5 (bit 7)
-    /// Reserved5
-    #[inline]
-    #[must_use]
-    pub const fn exec_inst_reserved_5(&self) -> bool {
-        self.0 & 0x80 != 0
+    pub const fn reserved_4_to_8(&self) -> u8 {
+        (self.0 >> 3) & 0x1f
     }
 }

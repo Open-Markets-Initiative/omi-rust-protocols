@@ -14,9 +14,9 @@ use crate::timestamp;
 /// Number of entries in Market Data message
 #[derive(Debug, Clone)]
 pub struct IncrementalRefreshTickerGroup {
-    /// Md Entry Type Ticker Entry Type
+    /// Ticker Md Entry Type
     /// Market Data entry type, identifies the element
-    pub md_entry_type_ticker_entry_type: Result<enums::MdEntryTypeTickerEntryType, u8>,
+    pub ticker_md_entry_type: Result<enums::TickerMdEntryType, u8>,
     /// Security Id
     /// SecurityID as referenced in MDP3 and Ilink3 protocols
     pub security_id: i32,
@@ -61,7 +61,7 @@ impl From<Borrowed<'_>> for IncrementalRefreshTickerGroup {
     #[inline]
     fn from(view: Borrowed<'_>) -> Self {
         Self {
-            md_entry_type_ticker_entry_type: view.md_entry_type_ticker_entry_type(),
+            ticker_md_entry_type: view.ticker_md_entry_type(),
             security_id: view.security_id(),
             symbol: view.symbol().as_str().map(String::from),
             instrument_guid: view.instrument_guid(),

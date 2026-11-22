@@ -145,17 +145,17 @@ impl<'a> SnapshotFullRefreshLegacy<'a> {
         Some(crate::decimal::Decimal(raw))
     }
 
-    /// Snapshot Full Refresh Group rows; `root_block` is the wire root block length
+    /// Snapshot Full Refresh Legacy Group rows; `root_block` is the wire root block length
     /// from the message header (the walker's `Framed::root_block`).
     #[inline]
     #[must_use]
-    pub fn snapshot_full_refresh_group(
+    pub fn snapshot_full_refresh_legacy_group(
         &self,
         root_block: usize,
-    ) -> SnapshotFullRefreshLegacySnapshotFullRefreshGroupRows<'a> {
-        let bounds = Self::snapshot_full_refresh_group_bounds(self.data, root_block);
+    ) -> SnapshotFullRefreshLegacyGroupRows<'a> {
+        let bounds = Self::snapshot_full_refresh_legacy_group_bounds(self.data, root_block);
         let (offset, stride, remaining) = bounds.unwrap_or((0, 0, 0));
-        SnapshotFullRefreshLegacySnapshotFullRefreshGroupRows {
+        SnapshotFullRefreshLegacyGroupRows {
             data: self.data,
             offset,
             stride,
@@ -163,7 +163,7 @@ impl<'a> SnapshotFullRefreshLegacy<'a> {
         }
     }
 
-    fn snapshot_full_refresh_group_bounds(
+    fn snapshot_full_refresh_legacy_group_bounds(
         data: &[u8],
         root_block: usize,
     ) -> Option<(usize, usize, usize)> {
@@ -175,25 +175,25 @@ impl<'a> SnapshotFullRefreshLegacy<'a> {
     }
 }
 
-/// Snapshot Full Refresh Group row iterator — empty on malformed dimensions.
+/// Snapshot Full Refresh Legacy Group row iterator — empty on malformed dimensions.
 #[derive(Debug, Clone)]
-pub struct SnapshotFullRefreshLegacySnapshotFullRefreshGroupRows<'a> {
+pub struct SnapshotFullRefreshLegacyGroupRows<'a> {
     data: &'a [u8],
     offset: usize,
     stride: usize,
     remaining: usize,
 }
 
-impl<'a> Iterator for SnapshotFullRefreshLegacySnapshotFullRefreshGroupRows<'a> {
-    type Item = SnapshotFullRefreshGroup<'a>;
+impl<'a> Iterator for SnapshotFullRefreshLegacyGroupRows<'a> {
+    type Item = SnapshotFullRefreshLegacyGroup<'a>;
 
-    fn next(&mut self) -> Option<SnapshotFullRefreshGroup<'a>> {
+    fn next(&mut self) -> Option<SnapshotFullRefreshLegacyGroup<'a>> {
         if self.remaining == 0 {
             return None;
         }
         let data = self.data.get(self.offset..)?;
         self.offset = self.offset.checked_add(self.stride)?;
         self.remaining -= 1;
-        SnapshotFullRefreshGroup::parse(data).ok()
+        SnapshotFullRefreshLegacyGroup::parse(data).ok()
     }
 }

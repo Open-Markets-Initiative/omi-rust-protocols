@@ -15,52 +15,12 @@ impl MatchEventIndicator {
         self.0
     }
 
-    /// Unused Event Indicator 0 (bit 0)
-    /// Unused EventIndicator 0
+    /// Unused Bits 1 To 6 (bits 0..6)
+    /// 6 unused bits
     #[inline]
     #[must_use]
-    pub const fn unused_event_indicator_0(&self) -> bool {
-        self.0 & 0x1 != 0
-    }
-
-    /// Unused Event Indicator 1 (bit 1)
-    /// Unused EventIndicator 1
-    #[inline]
-    #[must_use]
-    pub const fn unused_event_indicator_1(&self) -> bool {
-        self.0 & 0x2 != 0
-    }
-
-    /// Unused Event Indicator 2 (bit 2)
-    /// Unused EventIndicator 2
-    #[inline]
-    #[must_use]
-    pub const fn unused_event_indicator_2(&self) -> bool {
-        self.0 & 0x4 != 0
-    }
-
-    /// Unused Event Indicator 3 (bit 3)
-    /// Unused EventIndicator 3
-    #[inline]
-    #[must_use]
-    pub const fn unused_event_indicator_3(&self) -> bool {
-        self.0 & 0x8 != 0
-    }
-
-    /// Unused Event Indicator 4 (bit 4)
-    /// Unused EventIndicator 4
-    #[inline]
-    #[must_use]
-    pub const fn unused_event_indicator_4(&self) -> bool {
-        self.0 & 0x10 != 0
-    }
-
-    /// Unused Event Indicator 5 (bit 5)
-    /// Unused EventIndicator 5
-    #[inline]
-    #[must_use]
-    pub const fn unused_event_indicator_5(&self) -> bool {
-        self.0 & 0x20 != 0
+    pub const fn unused_bits_1_to_6(&self) -> u8 {
+        self.0 & 0x3f
     }
 
     /// Recovery Message (bit 6)

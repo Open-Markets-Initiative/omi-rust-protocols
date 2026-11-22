@@ -52,17 +52,18 @@ impl<'a> MdIncrementalRefreshLimitsBandingLegacy<'a> {
         MatchEventIndicator(self.data[8])
     }
 
-    /// Incremental Refresh Limits Banding Group rows; `root_block` is the wire root block length
+    /// Incremental Refresh Limits Banding Legacy Group rows; `root_block` is the wire root block length
     /// from the message header (the walker's `Framed::root_block`).
     #[inline]
     #[must_use]
-    pub fn incremental_refresh_limits_banding_group(
+    pub fn incremental_refresh_limits_banding_legacy_group(
         &self,
         root_block: usize,
-    ) -> MdIncrementalRefreshLimitsBandingLegacyIncrementalRefreshLimitsBandingGroupRows<'a> {
-        let bounds = Self::incremental_refresh_limits_banding_group_bounds(self.data, root_block);
+    ) -> IncrementalRefreshLimitsBandingLegacyGroupRows<'a> {
+        let bounds =
+            Self::incremental_refresh_limits_banding_legacy_group_bounds(self.data, root_block);
         let (offset, stride, remaining) = bounds.unwrap_or((0, 0, 0));
-        MdIncrementalRefreshLimitsBandingLegacyIncrementalRefreshLimitsBandingGroupRows {
+        IncrementalRefreshLimitsBandingLegacyGroupRows {
             data: self.data,
             offset,
             stride,
@@ -70,7 +71,7 @@ impl<'a> MdIncrementalRefreshLimitsBandingLegacy<'a> {
         }
     }
 
-    fn incremental_refresh_limits_banding_group_bounds(
+    fn incremental_refresh_limits_banding_legacy_group_bounds(
         data: &[u8],
         root_block: usize,
     ) -> Option<(usize, usize, usize)> {
@@ -82,27 +83,25 @@ impl<'a> MdIncrementalRefreshLimitsBandingLegacy<'a> {
     }
 }
 
-/// Incremental Refresh Limits Banding Group row iterator — empty on malformed dimensions.
+/// Incremental Refresh Limits Banding Legacy Group row iterator — empty on malformed dimensions.
 #[derive(Debug, Clone)]
-pub struct MdIncrementalRefreshLimitsBandingLegacyIncrementalRefreshLimitsBandingGroupRows<'a> {
+pub struct IncrementalRefreshLimitsBandingLegacyGroupRows<'a> {
     data: &'a [u8],
     offset: usize,
     stride: usize,
     remaining: usize,
 }
 
-impl<'a> Iterator
-    for MdIncrementalRefreshLimitsBandingLegacyIncrementalRefreshLimitsBandingGroupRows<'a>
-{
-    type Item = IncrementalRefreshLimitsBandingGroup<'a>;
+impl<'a> Iterator for IncrementalRefreshLimitsBandingLegacyGroupRows<'a> {
+    type Item = IncrementalRefreshLimitsBandingLegacyGroup<'a>;
 
-    fn next(&mut self) -> Option<IncrementalRefreshLimitsBandingGroup<'a>> {
+    fn next(&mut self) -> Option<IncrementalRefreshLimitsBandingLegacyGroup<'a>> {
         if self.remaining == 0 {
             return None;
         }
         let data = self.data.get(self.offset..)?;
         self.offset = self.offset.checked_add(self.stride)?;
         self.remaining -= 1;
-        IncrementalRefreshLimitsBandingGroup::parse(data).ok()
+        IncrementalRefreshLimitsBandingLegacyGroup::parse(data).ok()
     }
 }

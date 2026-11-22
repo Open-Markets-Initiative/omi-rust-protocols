@@ -50,11 +50,11 @@ impl<'a> OperationalHaltMessage<'a> {
         u64::from_be_bytes(raw)
     }
 
-    /// Stock Alpha 8
+    /// Stock
     /// Denotes the security symbol for the issue in Nasdaq execution system.
     #[inline]
     #[must_use]
-    pub fn stock_alpha_8(&self) -> crate::borrowed::text::Text<'_, 0x20> {
+    pub fn stock(&self) -> crate::borrowed::text::Text<'_, 0x20> {
         crate::borrowed::text::Text(&self.data[8..16])
     }
 

@@ -35,6 +35,12 @@ pub use eris_group::*;
 mod eris_groups;
 pub use eris_groups::*;
 
+mod eris_leg_security_alt_id_group;
+pub use eris_leg_security_alt_id_group::*;
+
+mod eris_leg_security_alt_id_groups;
+pub use eris_leg_security_alt_id_groups::*;
+
 mod eris_legs_group;
 pub use eris_legs_group::*;
 
@@ -55,6 +61,12 @@ pub use eris_reference_data_group::*;
 
 mod eris_reference_data_groups;
 pub use eris_reference_data_groups::*;
+
+mod eris_reference_data_security_alt_id_group;
+pub use eris_reference_data_security_alt_id_group::*;
+
+mod eris_reference_data_security_alt_id_groups;
+pub use eris_reference_data_security_alt_id_groups::*;
 
 mod eris_security_alt_id_group;
 pub use eris_security_alt_id_group::*;
@@ -95,6 +107,12 @@ pub use group_size::*;
 mod group_size_encoding;
 pub use group_size_encoding::*;
 
+mod incremental_refresh_eris_events_group;
+pub use incremental_refresh_eris_events_group::*;
+
+mod incremental_refresh_eris_events_groups;
+pub use incremental_refresh_eris_events_groups::*;
+
 mod incremental_refresh_eris_related_instruments_group;
 pub use incremental_refresh_eris_related_instruments_group::*;
 
@@ -106,6 +124,12 @@ pub use incremental_refresh_indices_group::*;
 
 mod incremental_refresh_indices_groups;
 pub use incremental_refresh_indices_groups::*;
+
+mod indices_events_group;
+pub use indices_events_group::*;
+
+mod indices_events_groups;
+pub use indices_events_groups::*;
 
 mod inst_attrib_group;
 pub use inst_attrib_group::*;
@@ -149,8 +173,8 @@ pub use md_entry_px_decimal_optional::*;
 mod md_entry_size;
 pub use md_entry_size::*;
 
-mod message;
-pub use message::*;
+mod mdp3_message;
+pub use mdp3_message::*;
 
 mod message_header;
 pub use message_header::*;

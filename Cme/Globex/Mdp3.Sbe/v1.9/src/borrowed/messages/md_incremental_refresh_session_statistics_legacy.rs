@@ -52,19 +52,18 @@ impl<'a> MdIncrementalRefreshSessionStatisticsLegacy<'a> {
         MatchEventIndicator(self.data[8])
     }
 
-    /// Incremental Refresh Session Statistics Group rows; `root_block` is the wire root block length
+    /// Incremental Refresh Session Statistics Legacy Group rows; `root_block` is the wire root block length
     /// from the message header (the walker's `Framed::root_block`).
     #[inline]
     #[must_use]
-    pub fn incremental_refresh_session_statistics_group(
+    pub fn incremental_refresh_session_statistics_legacy_group(
         &self,
         root_block: usize,
-    ) -> MdIncrementalRefreshSessionStatisticsLegacyIncrementalRefreshSessionStatisticsGroupRows<'a>
-    {
+    ) -> IncrementalRefreshSessionStatisticsLegacyGroupRows<'a> {
         let bounds =
-            Self::incremental_refresh_session_statistics_group_bounds(self.data, root_block);
+            Self::incremental_refresh_session_statistics_legacy_group_bounds(self.data, root_block);
         let (offset, stride, remaining) = bounds.unwrap_or((0, 0, 0));
-        MdIncrementalRefreshSessionStatisticsLegacyIncrementalRefreshSessionStatisticsGroupRows {
+        IncrementalRefreshSessionStatisticsLegacyGroupRows {
             data: self.data,
             offset,
             stride,
@@ -72,7 +71,7 @@ impl<'a> MdIncrementalRefreshSessionStatisticsLegacy<'a> {
         }
     }
 
-    fn incremental_refresh_session_statistics_group_bounds(
+    fn incremental_refresh_session_statistics_legacy_group_bounds(
         data: &[u8],
         root_block: usize,
     ) -> Option<(usize, usize, usize)> {
@@ -84,29 +83,25 @@ impl<'a> MdIncrementalRefreshSessionStatisticsLegacy<'a> {
     }
 }
 
-/// Incremental Refresh Session Statistics Group row iterator — empty on malformed dimensions.
+/// Incremental Refresh Session Statistics Legacy Group row iterator — empty on malformed dimensions.
 #[derive(Debug, Clone)]
-pub struct MdIncrementalRefreshSessionStatisticsLegacyIncrementalRefreshSessionStatisticsGroupRows<
-    'a,
-> {
+pub struct IncrementalRefreshSessionStatisticsLegacyGroupRows<'a> {
     data: &'a [u8],
     offset: usize,
     stride: usize,
     remaining: usize,
 }
 
-impl<'a> Iterator
-    for MdIncrementalRefreshSessionStatisticsLegacyIncrementalRefreshSessionStatisticsGroupRows<'a>
-{
-    type Item = IncrementalRefreshSessionStatisticsGroup<'a>;
+impl<'a> Iterator for IncrementalRefreshSessionStatisticsLegacyGroupRows<'a> {
+    type Item = IncrementalRefreshSessionStatisticsLegacyGroup<'a>;
 
-    fn next(&mut self) -> Option<IncrementalRefreshSessionStatisticsGroup<'a>> {
+    fn next(&mut self) -> Option<IncrementalRefreshSessionStatisticsLegacyGroup<'a>> {
         if self.remaining == 0 {
             return None;
         }
         let data = self.data.get(self.offset..)?;
         self.offset = self.offset.checked_add(self.stride)?;
         self.remaining -= 1;
-        IncrementalRefreshSessionStatisticsGroup::parse(data).ok()
+        IncrementalRefreshSessionStatisticsLegacyGroup::parse(data).ok()
     }
 }

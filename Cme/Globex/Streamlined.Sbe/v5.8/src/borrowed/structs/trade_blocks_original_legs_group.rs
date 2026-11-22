@@ -141,11 +141,11 @@ impl<'a> TradeBlocksOriginalLegsGroup<'a> {
         crate::borrowed::text::Text(&self.data[124..128])
     }
 
-    /// Leg Ratio Qty u Int 16 Null
+    /// Leg Ratio Qty
     /// The ratio of quantity for this individual leg relative to the entire multileg security
     /// Null sentinel: 65535
     #[inline]
-    pub fn leg_ratio_qty_u_int_16_null(&self) -> Option<u16> {
+    pub fn leg_ratio_qty(&self) -> Option<u16> {
         let raw = u16::from_le_bytes(self.data[128..130].try_into().unwrap());
         if raw == 65535 {
             return None;

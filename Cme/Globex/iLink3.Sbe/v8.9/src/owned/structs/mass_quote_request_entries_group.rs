@@ -20,9 +20,9 @@ pub struct MassQuoteRequestEntriesGroup {
     /// Order Qty
     /// Number of shares or contracts ordered
     pub order_qty: u32,
-    /// Side Side
+    /// Quote Side
     /// Quote side
-    pub side_side: Result<enums::SideSide, u8>,
+    pub quote_side: Result<enums::QuoteSide, u8>,
     /// Quote Entry Id
     /// Unique identifier for a quote. The QuoteEntryID stays with the quote as a static identifier even if the quote is updated. For fills this value is transposed into client order ID (tag 11)
     pub quote_entry_id: u32,
@@ -46,7 +46,7 @@ impl From<Borrowed<'_>> for MassQuoteRequestEntriesGroup {
             security_id: view.security_id(),
             price: view.price(),
             order_qty: view.order_qty(),
-            side_side: view.side_side(),
+            quote_side: view.quote_side(),
             quote_entry_id: view.quote_entry_id(),
             quote_set_id: view.quote_set_id(),
         }

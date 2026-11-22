@@ -32,20 +32,19 @@ impl<'a> ErisSecurityAltIdGroup<'a> {
         &self.data[..Self::SIZE]
     }
 
-    /// Security Alt Id 50
+    /// Security Alt Id
     /// Expanded instrument description.
     #[inline]
     #[must_use]
-    pub fn security_alt_id_50(&self) -> crate::borrowed::text::Text<'_, 0x00> {
+    pub fn security_alt_id(&self) -> crate::borrowed::text::Text<'_, 0x00> {
         crate::borrowed::text::Text(&self.data[0..26])
     }
 
-    /// Security Alt Id Source Optional
+    /// Security Alt Id Source
     /// Identifies class or source of the SecurityAltID (455) value.
-    /// Null sentinel: 0
     #[inline]
     #[must_use]
-    pub fn security_alt_id_source_optional(&self) -> u8 {
+    pub fn security_alt_id_source(&self) -> u8 {
         self.data[26]
     }
 }

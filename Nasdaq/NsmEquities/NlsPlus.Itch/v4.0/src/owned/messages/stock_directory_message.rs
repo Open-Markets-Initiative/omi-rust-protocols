@@ -19,7 +19,7 @@ pub struct StockDirectoryMessage {
     /// Timestamp
     pub timestamp: u64,
     /// Stock
-    /// Denotes the security symbol for the issue in the Nasdaq execution system.
+    /// Denotes the security symbol for the issue in Nasdaq execution system.
     pub stock: Option<String>,
     /// Market Category
     /// Indicates listing market or listing market tier for the issue.

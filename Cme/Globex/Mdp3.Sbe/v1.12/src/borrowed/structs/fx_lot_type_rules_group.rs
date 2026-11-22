@@ -40,11 +40,11 @@ impl<'a> FxLotTypeRulesGroup<'a> {
         self.data[0] as i8
     }
 
-    /// Min Lot Size u Int 64
+    /// Fx Min Lot Size
     /// For FX instruments in the repeating group with Tag 1093-LotType=2, Tag 1231-MinLotSize provides a Regular Amount - a default order size on the Workstation screen. With tag 1093-LotType= 5, Tag 1231-MinLotSize value represents standard min order qty increment
     #[inline]
     #[must_use]
-    pub fn min_lot_size_u_int_64(&self) -> u64 {
+    pub fn fx_min_lot_size(&self) -> u64 {
         u64::from_le_bytes(self.data[1..9].try_into().unwrap())
     }
 }

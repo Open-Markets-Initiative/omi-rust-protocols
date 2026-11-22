@@ -31,8 +31,8 @@ pub struct SnapshotFullRefreshOrderBookLegacy {
     /// Transact Time
     /// Start of event processing time in number of nanoseconds since Unix epoch
     pub transact_time: timestamp::UnixNanoseconds,
-    /// Snapshot Full Refresh Order Book Group rows
-    pub snapshot_full_refresh_order_book_group: Vec<SnapshotFullRefreshOrderBookGroup>,
+    /// Snapshot Full Refresh Order Book Legacy Group rows
+    pub snapshot_full_refresh_order_book_legacy_group: Vec<SnapshotFullRefreshOrderBookLegacyGroup>,
 }
 
 impl SnapshotFullRefreshOrderBookLegacy {
@@ -53,8 +53,8 @@ impl SnapshotFullRefreshOrderBookLegacy {
             no_chunks: view.no_chunks(),
             current_chunk: view.current_chunk(),
             transact_time: view.transact_time(),
-            snapshot_full_refresh_order_book_group: view
-                .snapshot_full_refresh_order_book_group(root_block)
+            snapshot_full_refresh_order_book_legacy_group: view
+                .snapshot_full_refresh_order_book_legacy_group(root_block)
                 .map(Into::into)
                 .collect(),
         }

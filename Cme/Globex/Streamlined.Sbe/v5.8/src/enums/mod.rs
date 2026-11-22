@@ -14,6 +14,9 @@ pub use aggressor_side::*;
 mod security_update_action;
 pub use security_update_action::*;
 
+mod event_type_indices;
+pub use event_type_indices::*;
+
 mod md_entry_type_indices;
 pub use md_entry_type_indices::*;
 

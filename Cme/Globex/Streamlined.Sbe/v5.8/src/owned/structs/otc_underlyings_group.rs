@@ -21,9 +21,9 @@ pub struct OtcUnderlyingsGroup {
     /// Underlying Security Type
     /// Underlying Security's SecurityType
     pub underlying_security_type: Option<String>,
-    /// Underlying Security Exchange Security Exchange
-    /// Underlying Security's SecurityExchange and it can be used to identify the underlying security
-    pub underlying_security_exchange_security_exchange: Option<String>,
+    /// Underlying Security Exchange
+    /// Underlying Security's SecurityExchange
+    pub underlying_security_exchange: Option<String>,
 }
 
 impl OtcUnderlyingsGroup {
@@ -41,8 +41,8 @@ impl From<Borrowed<'_>> for OtcUnderlyingsGroup {
             underlying_symbol: view.underlying_symbol().as_str().map(String::from),
             underlying_maturity_month_year: view.underlying_maturity_month_year().into(),
             underlying_security_type: view.underlying_security_type().as_str().map(String::from),
-            underlying_security_exchange_security_exchange: view
-                .underlying_security_exchange_security_exchange()
+            underlying_security_exchange: view
+                .underlying_security_exchange()
                 .as_str()
                 .map(String::from),
         }

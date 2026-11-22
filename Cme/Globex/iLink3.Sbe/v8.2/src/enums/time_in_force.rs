@@ -16,6 +16,7 @@ pub enum TimeInForce {
     FillOrKill,
     /// Good Till Date
     GoodTillDate,
+    NoValue,
 }
 
 impl TimeInForce {
@@ -28,6 +29,7 @@ impl TimeInForce {
             3 => Ok(Self::FillAndKill),
             4 => Ok(Self::FillOrKill),
             6 => Ok(Self::GoodTillDate),
+            255 => Ok(Self::NoValue),
             _ => Err(value),
         }
     }

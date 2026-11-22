@@ -19,9 +19,9 @@ pub enum Display {
     /// Imbalance-Only (for opening and closing cross only)
     ImbalanceOnly,
     /// Mid-Point Peg
-    MidPoint,
+    MidPointPeg,
     /// Mid-Point Peg Post Only
-    MidPoint2,
+    MidPointPegPostOnly,
 }
 
 impl Display {
@@ -35,8 +35,8 @@ impl Display {
             b'P' => Ok(Self::PostOnly),
             b'Z' => Ok(Self::ChangedToNonDisplayed),
             b'I' => Ok(Self::ImbalanceOnly),
-            b'M' => Ok(Self::MidPoint),
-            b'W' => Ok(Self::MidPoint2),
+            b'M' => Ok(Self::MidPointPeg),
+            b'W' => Ok(Self::MidPointPegPostOnly),
             _ => Err(value),
         }
     }

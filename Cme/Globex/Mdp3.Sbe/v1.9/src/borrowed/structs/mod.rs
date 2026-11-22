@@ -47,6 +47,12 @@ pub use incremental_refresh_book_group::*;
 mod incremental_refresh_book_groups;
 pub use incremental_refresh_book_groups::*;
 
+mod incremental_refresh_book_legacy_group;
+pub use incremental_refresh_book_legacy_group::*;
+
+mod incremental_refresh_book_legacy_groups;
+pub use incremental_refresh_book_legacy_groups::*;
+
 mod incremental_refresh_book_order_id_group;
 pub use incremental_refresh_book_order_id_group::*;
 
@@ -59,11 +65,23 @@ pub use incremental_refresh_daily_statistics_group::*;
 mod incremental_refresh_daily_statistics_groups;
 pub use incremental_refresh_daily_statistics_groups::*;
 
+mod incremental_refresh_daily_statistics_legacy_group;
+pub use incremental_refresh_daily_statistics_legacy_group::*;
+
+mod incremental_refresh_daily_statistics_legacy_groups;
+pub use incremental_refresh_daily_statistics_legacy_groups::*;
+
 mod incremental_refresh_limits_banding_group;
 pub use incremental_refresh_limits_banding_group::*;
 
 mod incremental_refresh_limits_banding_groups;
 pub use incremental_refresh_limits_banding_groups::*;
+
+mod incremental_refresh_limits_banding_legacy_group;
+pub use incremental_refresh_limits_banding_legacy_group::*;
+
+mod incremental_refresh_limits_banding_legacy_groups;
+pub use incremental_refresh_limits_banding_legacy_groups::*;
 
 mod incremental_refresh_order_book_group;
 pub use incremental_refresh_order_book_group::*;
@@ -71,17 +89,35 @@ pub use incremental_refresh_order_book_group::*;
 mod incremental_refresh_order_book_groups;
 pub use incremental_refresh_order_book_groups::*;
 
+mod incremental_refresh_order_book_legacy_group;
+pub use incremental_refresh_order_book_legacy_group::*;
+
+mod incremental_refresh_order_book_legacy_groups;
+pub use incremental_refresh_order_book_legacy_groups::*;
+
 mod incremental_refresh_session_statistics_group;
 pub use incremental_refresh_session_statistics_group::*;
 
 mod incremental_refresh_session_statistics_groups;
 pub use incremental_refresh_session_statistics_groups::*;
 
+mod incremental_refresh_session_statistics_legacy_group;
+pub use incremental_refresh_session_statistics_legacy_group::*;
+
+mod incremental_refresh_session_statistics_legacy_groups;
+pub use incremental_refresh_session_statistics_legacy_groups::*;
+
 mod incremental_refresh_trade_summary_group;
 pub use incremental_refresh_trade_summary_group::*;
 
 mod incremental_refresh_trade_summary_groups;
 pub use incremental_refresh_trade_summary_groups::*;
+
+mod incremental_refresh_trade_summary_legacy_group;
+pub use incremental_refresh_trade_summary_legacy_group::*;
+
+mod incremental_refresh_trade_summary_legacy_groups;
+pub use incremental_refresh_trade_summary_legacy_groups::*;
 
 mod incremental_refresh_trade_summary_order_id_group;
 pub use incremental_refresh_trade_summary_order_id_group::*;
@@ -134,8 +170,8 @@ pub use market_data_request_security_groups::*;
 mod maturity_month_year;
 pub use maturity_month_year::*;
 
-mod message;
-pub use message::*;
+mod mdp3_message;
+pub use mdp3_message::*;
 
 mod message_header;
 pub use message_header::*;
@@ -215,11 +251,23 @@ pub use snapshot_full_refresh_group::*;
 mod snapshot_full_refresh_groups;
 pub use snapshot_full_refresh_groups::*;
 
+mod snapshot_full_refresh_legacy_group;
+pub use snapshot_full_refresh_legacy_group::*;
+
+mod snapshot_full_refresh_legacy_groups;
+pub use snapshot_full_refresh_legacy_groups::*;
+
 mod snapshot_full_refresh_order_book_group;
 pub use snapshot_full_refresh_order_book_group::*;
 
 mod snapshot_full_refresh_order_book_groups;
 pub use snapshot_full_refresh_order_book_groups::*;
+
+mod snapshot_full_refresh_order_book_legacy_group;
+pub use snapshot_full_refresh_order_book_legacy_group::*;
+
+mod snapshot_full_refresh_order_book_legacy_groups;
+pub use snapshot_full_refresh_order_book_legacy_groups::*;
 
 mod udp_packet;
 pub use udp_packet::*;

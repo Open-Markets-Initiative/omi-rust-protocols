@@ -12,9 +12,9 @@ pub struct FxLotTypeRulesGroup {
     /// Lot Type
     /// This tag is required to interpret the value in tag 1231-MinLotSize
     pub lot_type: i8,
-    /// Min Lot Size u Int 64
+    /// Fx Min Lot Size
     /// For FX instruments in the repeating group with Tag 1093-LotType=2, Tag 1231-MinLotSize provides a Regular Amount - a default order size on the Workstation screen. With tag 1093-LotType= 5, Tag 1231-MinLotSize value represents standard min order qty increment
-    pub min_lot_size_u_int_64: u64,
+    pub fx_min_lot_size: u64,
 }
 
 impl FxLotTypeRulesGroup {
@@ -30,7 +30,7 @@ impl From<Borrowed<'_>> for FxLotTypeRulesGroup {
     fn from(view: Borrowed<'_>) -> Self {
         Self {
             lot_type: view.lot_type(),
-            min_lot_size_u_int_64: view.min_lot_size_u_int_64(),
+            fx_min_lot_size: view.fx_min_lot_size(),
         }
     }
 }

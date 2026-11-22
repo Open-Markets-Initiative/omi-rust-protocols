@@ -67,5 +67,5 @@ impl<'a> MdIncrementalRefreshEris351<'a> {
 
     // Unsupported repeating group — Eris Security Alt Id Group: skipped — a preceding group is unsupported, its offset is unknowable
 
-    // Unsupported repeating group — Events Group: skipped — a preceding group is unsupported, its offset is unknowable
+    // Unsupported repeating group — Incremental Refresh Eris Events Group: skipped — a preceding group is unsupported, its offset is unknowable
 }

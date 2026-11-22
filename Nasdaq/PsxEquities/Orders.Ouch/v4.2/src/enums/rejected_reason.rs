@@ -27,37 +27,37 @@ pub enum RejectedReason {
     /// Invalid price
     InvalidPrice,
     /// Invalid Minimum Quantity
-    InvalidMinimum,
+    InvalidMinimumQuantity,
     /// Invalid Mid-point Post Only Price
     InvalidMidpoint,
     /// Reject All enabled
-    Reject,
+    RejectAllEnabled,
     /// Easy to Borrow (ETB) reject
-    EasyToBorrowEtb,
+    EasyToBorrowReject,
     /// Restricted symbol list reject
-    Restricted,
+    RestrictedSymbolListReject,
     /// ISO order restriction
-    Iso,
+    IsoOrderRestriction,
     /// Odd lot order restriction
-    Odd,
+    OddLotOrderRestriction,
     /// Mid-Point order restriction
-    MidPoint,
+    MidPointOrderRestriction,
     /// Pre-Market order restriction
-    PreMarket,
+    PreMarketOrderRestriction,
     /// Post market order restriction
-    PostMarket,
+    PostMarketOrderRestriction,
     /// Short sale order restriction
-    ShortSale,
+    ShortSaleOrderRestriction,
     /// On Open order restriction
-    OnOpen,
+    OnOpenOrderRestriction,
     /// On Close order restriction
-    OnClose,
+    OnCloseOrderRestriction,
     /// Two sided quote reject
-    TwoSided,
+    TwoSidedQuoteReject,
     /// Exceeded shares limit
-    Exceeded,
+    ExceededSharesLimit,
     /// Exceeded dollar value limit
-    Exceeded2,
+    ExceededDollarValueLimit,
 }
 
 impl RejectedReason {
@@ -75,22 +75,22 @@ impl RejectedReason {
             b'M' => Ok(Self::OutsideOfPermittedTimes),
             b'R' => Ok(Self::ThisOrderIsNotAllowedInThisTypeOfCross),
             b'X' => Ok(Self::InvalidPrice),
-            b'N' => Ok(Self::InvalidMinimum),
+            b'N' => Ok(Self::InvalidMinimumQuantity),
             b'W' => Ok(Self::InvalidMidpoint),
-            b'a' => Ok(Self::Reject),
-            b'b' => Ok(Self::EasyToBorrowEtb),
-            b'c' => Ok(Self::Restricted),
-            b'd' => Ok(Self::Iso),
-            b'e' => Ok(Self::Odd),
-            b'f' => Ok(Self::MidPoint),
-            b'g' => Ok(Self::PreMarket),
-            b'h' => Ok(Self::PostMarket),
-            b'i' => Ok(Self::ShortSale),
-            b'j' => Ok(Self::OnOpen),
-            b'k' => Ok(Self::OnClose),
-            b'l' => Ok(Self::TwoSided),
-            b'm' => Ok(Self::Exceeded),
-            b'n' => Ok(Self::Exceeded2),
+            b'a' => Ok(Self::RejectAllEnabled),
+            b'b' => Ok(Self::EasyToBorrowReject),
+            b'c' => Ok(Self::RestrictedSymbolListReject),
+            b'd' => Ok(Self::IsoOrderRestriction),
+            b'e' => Ok(Self::OddLotOrderRestriction),
+            b'f' => Ok(Self::MidPointOrderRestriction),
+            b'g' => Ok(Self::PreMarketOrderRestriction),
+            b'h' => Ok(Self::PostMarketOrderRestriction),
+            b'i' => Ok(Self::ShortSaleOrderRestriction),
+            b'j' => Ok(Self::OnOpenOrderRestriction),
+            b'k' => Ok(Self::OnCloseOrderRestriction),
+            b'l' => Ok(Self::TwoSidedQuoteReject),
+            b'm' => Ok(Self::ExceededSharesLimit),
+            b'n' => Ok(Self::ExceededDollarValueLimit),
             _ => Err(value),
         }
     }

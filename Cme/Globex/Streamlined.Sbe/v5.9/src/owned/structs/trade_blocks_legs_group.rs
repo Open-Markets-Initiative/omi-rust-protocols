@@ -45,9 +45,9 @@ pub struct TradeBlocksLegsGroup {
     /// Leg Security Exchange
     /// Multileg instrument's individual security's leg SecurityExchange
     pub leg_security_exchange: Option<String>,
-    /// Leg Ratio Qty u Int 16 Null
+    /// Leg Ratio Qty
     /// The ratio of quantity for this individual leg relative to the entire multileg security
-    pub leg_ratio_qty_u_int_16_null: Option<u16>,
+    pub leg_ratio_qty: Option<u16>,
     /// Leg Side
     /// The side of this individual leg (multileg security)
     pub leg_side: Option<u8>,
@@ -84,7 +84,7 @@ impl From<Borrowed<'_>> for TradeBlocksLegsGroup {
                 .leg_unit_of_measure_qty_decimal_64_null()
                 .into(),
             leg_security_exchange: view.leg_security_exchange().as_str().map(String::from),
-            leg_ratio_qty_u_int_16_null: view.leg_ratio_qty_u_int_16_null(),
+            leg_ratio_qty: view.leg_ratio_qty(),
             leg_side: view.leg_side(),
             leg_put_or_call: view.leg_put_or_call(),
             leg_unit_of_measure_currency: view

@@ -158,7 +158,7 @@ impl<'a> MdInstrumentDefinitionEris<'a> {
 
     // Unsupported repeating group — Eris Legs Group: contains a nested counted group; per-row recursion not yet emitted
 
-    // Unsupported repeating group — Eris Security Alt Id Group: skipped — a preceding group is unsupported, its offset is unknowable
+    // Unsupported repeating group — Eris Leg Security Alt Id Group: skipped — a preceding group is unsupported, its offset is unknowable
 
     /// Eris Feed Types Group rows; `root_block` is the wire root block length
     /// from the message header (the walker's `Framed::root_block`).

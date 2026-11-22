@@ -12,9 +12,9 @@ use crate::timestamp;
 /// Number of entries in Market Data message
 #[derive(Debug, Clone)]
 pub struct SnapshotRefreshTickerGroup {
-    /// Md Entry Type Ticker Entry Type
+    /// Ticker Md Entry Type
     /// Market Data entry type, identifies the element
-    pub md_entry_type_ticker_entry_type: Result<enums::MdEntryTypeTickerEntryType, u8>,
+    pub ticker_md_entry_type: Result<enums::TickerMdEntryType, u8>,
     /// Md Entry Px
     /// Market Data entry price
     pub md_entry_px: decimal::Decimal<-9>,
@@ -47,7 +47,7 @@ impl From<Borrowed<'_>> for SnapshotRefreshTickerGroup {
     #[inline]
     fn from(view: Borrowed<'_>) -> Self {
         Self {
-            md_entry_type_ticker_entry_type: view.md_entry_type_ticker_entry_type(),
+            ticker_md_entry_type: view.ticker_md_entry_type(),
             md_entry_px: view.md_entry_px(),
             md_entry_size: view.md_entry_size(),
             md_entry_time: view.md_entry_time(),

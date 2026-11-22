@@ -32,14 +32,12 @@ impl<'a> IncrementalRefreshTickerGroup<'a> {
         &self.data[..Self::SIZE]
     }
 
-    /// Md Entry Type Ticker Entry Type
+    /// Ticker Md Entry Type
     /// Market Data entry type, identifies the element
     #[inline]
-    pub fn md_entry_type_ticker_entry_type(
-        &self,
-    ) -> Result<crate::enums::MdEntryTypeTickerEntryType, u8> {
+    pub fn ticker_md_entry_type(&self) -> Result<crate::enums::TickerMdEntryType, u8> {
         let raw = self.data[0];
-        crate::enums::MdEntryTypeTickerEntryType::from_raw(raw)
+        crate::enums::TickerMdEntryType::from_raw(raw)
     }
 
     /// Security Id

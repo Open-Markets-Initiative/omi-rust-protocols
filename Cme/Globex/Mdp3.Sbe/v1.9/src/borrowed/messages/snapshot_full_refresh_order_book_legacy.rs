@@ -83,17 +83,18 @@ impl<'a> SnapshotFullRefreshOrderBookLegacy<'a> {
         crate::timestamp::UnixNanoseconds(raw)
     }
 
-    /// Snapshot Full Refresh Order Book Group rows; `root_block` is the wire root block length
+    /// Snapshot Full Refresh Order Book Legacy Group rows; `root_block` is the wire root block length
     /// from the message header (the walker's `Framed::root_block`).
     #[inline]
     #[must_use]
-    pub fn snapshot_full_refresh_order_book_group(
+    pub fn snapshot_full_refresh_order_book_legacy_group(
         &self,
         root_block: usize,
-    ) -> SnapshotFullRefreshOrderBookLegacySnapshotFullRefreshOrderBookGroupRows<'a> {
-        let bounds = Self::snapshot_full_refresh_order_book_group_bounds(self.data, root_block);
+    ) -> SnapshotFullRefreshOrderBookLegacyGroupRows<'a> {
+        let bounds =
+            Self::snapshot_full_refresh_order_book_legacy_group_bounds(self.data, root_block);
         let (offset, stride, remaining) = bounds.unwrap_or((0, 0, 0));
-        SnapshotFullRefreshOrderBookLegacySnapshotFullRefreshOrderBookGroupRows {
+        SnapshotFullRefreshOrderBookLegacyGroupRows {
             data: self.data,
             offset,
             stride,
@@ -101,7 +102,7 @@ impl<'a> SnapshotFullRefreshOrderBookLegacy<'a> {
         }
     }
 
-    fn snapshot_full_refresh_order_book_group_bounds(
+    fn snapshot_full_refresh_order_book_legacy_group_bounds(
         data: &[u8],
         root_block: usize,
     ) -> Option<(usize, usize, usize)> {
@@ -113,25 +114,25 @@ impl<'a> SnapshotFullRefreshOrderBookLegacy<'a> {
     }
 }
 
-/// Snapshot Full Refresh Order Book Group row iterator — empty on malformed dimensions.
+/// Snapshot Full Refresh Order Book Legacy Group row iterator — empty on malformed dimensions.
 #[derive(Debug, Clone)]
-pub struct SnapshotFullRefreshOrderBookLegacySnapshotFullRefreshOrderBookGroupRows<'a> {
+pub struct SnapshotFullRefreshOrderBookLegacyGroupRows<'a> {
     data: &'a [u8],
     offset: usize,
     stride: usize,
     remaining: usize,
 }
 
-impl<'a> Iterator for SnapshotFullRefreshOrderBookLegacySnapshotFullRefreshOrderBookGroupRows<'a> {
-    type Item = SnapshotFullRefreshOrderBookGroup<'a>;
+impl<'a> Iterator for SnapshotFullRefreshOrderBookLegacyGroupRows<'a> {
+    type Item = SnapshotFullRefreshOrderBookLegacyGroup<'a>;
 
-    fn next(&mut self) -> Option<SnapshotFullRefreshOrderBookGroup<'a>> {
+    fn next(&mut self) -> Option<SnapshotFullRefreshOrderBookLegacyGroup<'a>> {
         if self.remaining == 0 {
             return None;
         }
         let data = self.data.get(self.offset..)?;
         self.offset = self.offset.checked_add(self.stride)?;
         self.remaining -= 1;
-        SnapshotFullRefreshOrderBookGroup::parse(data).ok()
+        SnapshotFullRefreshOrderBookLegacyGroup::parse(data).ok()
     }
 }

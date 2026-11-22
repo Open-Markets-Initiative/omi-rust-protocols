@@ -13,9 +13,9 @@ pub struct LotTypeRulesGroup {
     /// Lot Type
     /// This tag is required to interpret the value in tag 1231-MinLotSize
     pub lot_type: i8,
-    /// Min Lot Size Decimal Qty
+    /// Min Lot Size
     /// Minimum quantity accepted for order entry. If tag 1093-LotType=4, this value is the minimum quantity for order entry expressed in the applicable units, specified in tag 996-UnitOfMeasure, e.g. megawatts
-    pub min_lot_size_decimal_qty: Option<decimal::Decimal<-4>>,
+    pub min_lot_size: Option<decimal::Decimal<-4>>,
 }
 
 impl LotTypeRulesGroup {
@@ -31,7 +31,7 @@ impl From<Borrowed<'_>> for LotTypeRulesGroup {
     fn from(view: Borrowed<'_>) -> Self {
         Self {
             lot_type: view.lot_type(),
-            min_lot_size_decimal_qty: view.min_lot_size_decimal_qty(),
+            min_lot_size: view.min_lot_size(),
         }
     }
 }

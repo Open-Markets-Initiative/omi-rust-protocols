@@ -40,12 +40,12 @@ impl<'a> LotTypeRulesGroup<'a> {
         self.data[0] as i8
     }
 
-    /// Min Lot Size Decimal Qty
+    /// Min Lot Size
     /// Minimum quantity accepted for order entry. If tag 1093-LotType=4, this value is the minimum quantity for order entry expressed in the applicable units, specified in tag 996-UnitOfMeasure, e.g. megawatts
     /// Implied decimal, scale -4
     /// Null sentinel: 2147483647
     #[inline]
-    pub fn min_lot_size_decimal_qty(&self) -> Option<crate::decimal::Decimal<-4>> {
+    pub fn min_lot_size(&self) -> Option<crate::decimal::Decimal<-4>> {
         let raw = i32::from_le_bytes(self.data[1..5].try_into().unwrap());
         if raw == 2147483647 {
             return None;

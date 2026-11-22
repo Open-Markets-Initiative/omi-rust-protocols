@@ -87,11 +87,11 @@ impl<'a> ErisLegsGroup<'a> {
         crate::borrowed::text::Text(&self.data[27..77])
     }
 
-    /// Leg Ratio Qty Int 32 Null
+    /// Eris Leg Ratio Qty
     /// The ratio of quantity for this individual leg relative to the entire multi-leg instrument.
     /// Null sentinel: 2147483647
     #[inline]
-    pub fn leg_ratio_qty_int_32_null(&self) -> Option<i32> {
+    pub fn eris_leg_ratio_qty(&self) -> Option<i32> {
         let raw = i32::from_le_bytes(self.data[77..81].try_into().unwrap());
         if raw == 2147483647 {
             return None;

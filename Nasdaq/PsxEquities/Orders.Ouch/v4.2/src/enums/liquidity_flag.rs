@@ -11,23 +11,23 @@ pub enum LiquidityFlag {
     /// Removed
     Removed,
     /// Opening Cross
-    Opening,
-    /// Opening Cross (imbalance-only)
     OpeningCross,
+    /// Opening Cross (imbalance-only)
+    OpeningCrossImbalanceOnly,
     /// Closing Cross
-    Closing,
-    /// Closing Cross (imbalance-only)
     ClosingCross,
+    /// Closing Cross (imbalance-only)
+    ClosingCrossImbalanceOnly,
     /// Halt/IPO Cross
-    HaltIpo,
+    HaltIpoCross,
     /// Halt Cross
-    Halt,
+    HaltCross,
     /// Non-displayed adding liquidity
-    NonDisplayed,
+    NonDisplayedAndAddedLiquidity,
     /// Removed liquidity at a midpoint
-    Removed2,
+    RemovedLiquidityAtAMidpoint,
     /// Added liquidity via a midpoint order
-    Added2,
+    AddedLiquidityViaAMidpointOrder,
     /// Displayed added liquidity with original order size of greater than or equal to 2,000 shares. Only applicable to symbols that are set to the pro rata execution algorithm
     DisplayedAddedLiquidity,
 }
@@ -39,15 +39,15 @@ impl LiquidityFlag {
         match value {
             b'A' => Ok(Self::Added),
             b'R' => Ok(Self::Removed),
-            b'O' => Ok(Self::Opening),
-            b'M' => Ok(Self::OpeningCross),
-            b'C' => Ok(Self::Closing),
-            b'L' => Ok(Self::ClosingCross),
-            b'H' => Ok(Self::HaltIpo),
-            b'K' => Ok(Self::Halt),
-            b'J' => Ok(Self::NonDisplayed),
-            b'm' => Ok(Self::Removed2),
-            b'k' => Ok(Self::Added2),
+            b'O' => Ok(Self::OpeningCross),
+            b'M' => Ok(Self::OpeningCrossImbalanceOnly),
+            b'C' => Ok(Self::ClosingCross),
+            b'L' => Ok(Self::ClosingCrossImbalanceOnly),
+            b'H' => Ok(Self::HaltIpoCross),
+            b'K' => Ok(Self::HaltCross),
+            b'J' => Ok(Self::NonDisplayedAndAddedLiquidity),
+            b'm' => Ok(Self::RemovedLiquidityAtAMidpoint),
+            b'k' => Ok(Self::AddedLiquidityViaAMidpointOrder),
             b'V' => Ok(Self::DisplayedAddedLiquidity),
             _ => Err(value),
         }

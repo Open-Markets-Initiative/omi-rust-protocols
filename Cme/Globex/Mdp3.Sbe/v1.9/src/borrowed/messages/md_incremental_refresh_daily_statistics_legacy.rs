@@ -52,18 +52,18 @@ impl<'a> MdIncrementalRefreshDailyStatisticsLegacy<'a> {
         MatchEventIndicator(self.data[8])
     }
 
-    /// Incremental Refresh Daily Statistics Group rows; `root_block` is the wire root block length
+    /// Incremental Refresh Daily Statistics Legacy Group rows; `root_block` is the wire root block length
     /// from the message header (the walker's `Framed::root_block`).
     #[inline]
     #[must_use]
-    pub fn incremental_refresh_daily_statistics_group(
+    pub fn incremental_refresh_daily_statistics_legacy_group(
         &self,
         root_block: usize,
-    ) -> MdIncrementalRefreshDailyStatisticsLegacyIncrementalRefreshDailyStatisticsGroupRows<'a>
-    {
-        let bounds = Self::incremental_refresh_daily_statistics_group_bounds(self.data, root_block);
+    ) -> IncrementalRefreshDailyStatisticsLegacyGroupRows<'a> {
+        let bounds =
+            Self::incremental_refresh_daily_statistics_legacy_group_bounds(self.data, root_block);
         let (offset, stride, remaining) = bounds.unwrap_or((0, 0, 0));
-        MdIncrementalRefreshDailyStatisticsLegacyIncrementalRefreshDailyStatisticsGroupRows {
+        IncrementalRefreshDailyStatisticsLegacyGroupRows {
             data: self.data,
             offset,
             stride,
@@ -71,7 +71,7 @@ impl<'a> MdIncrementalRefreshDailyStatisticsLegacy<'a> {
         }
     }
 
-    fn incremental_refresh_daily_statistics_group_bounds(
+    fn incremental_refresh_daily_statistics_legacy_group_bounds(
         data: &[u8],
         root_block: usize,
     ) -> Option<(usize, usize, usize)> {
@@ -83,27 +83,25 @@ impl<'a> MdIncrementalRefreshDailyStatisticsLegacy<'a> {
     }
 }
 
-/// Incremental Refresh Daily Statistics Group row iterator — empty on malformed dimensions.
+/// Incremental Refresh Daily Statistics Legacy Group row iterator — empty on malformed dimensions.
 #[derive(Debug, Clone)]
-pub struct MdIncrementalRefreshDailyStatisticsLegacyIncrementalRefreshDailyStatisticsGroupRows<'a> {
+pub struct IncrementalRefreshDailyStatisticsLegacyGroupRows<'a> {
     data: &'a [u8],
     offset: usize,
     stride: usize,
     remaining: usize,
 }
 
-impl<'a> Iterator
-    for MdIncrementalRefreshDailyStatisticsLegacyIncrementalRefreshDailyStatisticsGroupRows<'a>
-{
-    type Item = IncrementalRefreshDailyStatisticsGroup<'a>;
+impl<'a> Iterator for IncrementalRefreshDailyStatisticsLegacyGroupRows<'a> {
+    type Item = IncrementalRefreshDailyStatisticsLegacyGroup<'a>;
 
-    fn next(&mut self) -> Option<IncrementalRefreshDailyStatisticsGroup<'a>> {
+    fn next(&mut self) -> Option<IncrementalRefreshDailyStatisticsLegacyGroup<'a>> {
         if self.remaining == 0 {
             return None;
         }
         let data = self.data.get(self.offset..)?;
         self.offset = self.offset.checked_add(self.stride)?;
         self.remaining -= 1;
-        IncrementalRefreshDailyStatisticsGroup::parse(data).ok()
+        IncrementalRefreshDailyStatisticsLegacyGroup::parse(data).ok()
     }
 }

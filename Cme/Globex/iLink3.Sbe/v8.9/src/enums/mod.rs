@@ -125,8 +125,8 @@ pub use cross_type::*;
 mod quote_entry_control;
 pub use quote_entry_control::*;
 
-mod side_side;
-pub use side_side::*;
+mod quote_side;
+pub use quote_side::*;
 
 mod cxl_linked_sessions;
 pub use cxl_linked_sessions::*;

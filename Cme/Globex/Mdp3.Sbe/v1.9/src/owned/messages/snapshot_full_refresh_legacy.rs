@@ -48,8 +48,8 @@ pub struct SnapshotFullRefreshLegacy {
     /// Max Price Variation
     /// Differential value for price banding.
     pub max_price_variation: Option<decimal::Decimal<-7>>,
-    /// Snapshot Full Refresh Group rows
-    pub snapshot_full_refresh_group: Vec<SnapshotFullRefreshGroup>,
+    /// Snapshot Full Refresh Legacy Group rows
+    pub snapshot_full_refresh_legacy_group: Vec<SnapshotFullRefreshLegacyGroup>,
 }
 
 impl SnapshotFullRefreshLegacy {
@@ -75,8 +75,8 @@ impl SnapshotFullRefreshLegacy {
             high_limit_price: view.high_limit_price(),
             low_limit_price: view.low_limit_price(),
             max_price_variation: view.max_price_variation(),
-            snapshot_full_refresh_group: view
-                .snapshot_full_refresh_group(root_block)
+            snapshot_full_refresh_legacy_group: view
+                .snapshot_full_refresh_legacy_group(root_block)
                 .map(Into::into)
                 .collect(),
         }

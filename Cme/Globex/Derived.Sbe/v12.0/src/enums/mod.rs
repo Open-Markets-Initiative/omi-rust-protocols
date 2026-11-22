@@ -5,11 +5,11 @@
 mod template_id;
 pub use template_id::*;
 
-mod md_entry_type_spectrum_entry_type;
-pub use md_entry_type_spectrum_entry_type::*;
+mod spectrum_md_entry_type;
+pub use spectrum_md_entry_type::*;
 
-mod md_entry_type_ticker_entry_type;
-pub use md_entry_type_ticker_entry_type::*;
+mod ticker_md_entry_type;
+pub use ticker_md_entry_type::*;
 
 mod open_close_settl_flag;
 pub use open_close_settl_flag::*;

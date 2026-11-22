@@ -30,9 +30,9 @@ pub struct ErisLegsGroup {
     /// Leg Symbol
     /// This tag contains the instrument group of the requested security definition. Must be present when tag 555-NoLegs is present. Also must be first tag in repeating group. Multileg instrument's individual security's Symbol.
     pub leg_symbol: Option<String>,
-    /// Leg Ratio Qty Int 32 Null
+    /// Eris Leg Ratio Qty
     /// The ratio of quantity for this individual leg relative to the entire multi-leg instrument.
-    pub leg_ratio_qty_int_32_null: Option<i32>,
+    pub eris_leg_ratio_qty: Option<i32>,
     /// Leg Side
     /// The side of this individual leg (multileg security)
     pub leg_side: Option<u8>,
@@ -71,7 +71,7 @@ impl From<Borrowed<'_>> for ErisLegsGroup {
             leg_pay_frequencey: view.leg_pay_frequencey().as_str().map(String::from),
             previous_fixing_rate: view.previous_fixing_rate().into(),
             leg_symbol: view.leg_symbol().as_str().map(String::from),
-            leg_ratio_qty_int_32_null: view.leg_ratio_qty_int_32_null(),
+            eris_leg_ratio_qty: view.eris_leg_ratio_qty(),
             leg_side: view.leg_side(),
             leg_currency: view.leg_currency().as_str().map(String::from),
             leg_security_type_4: view.leg_security_type_4().as_str().map(String::from),

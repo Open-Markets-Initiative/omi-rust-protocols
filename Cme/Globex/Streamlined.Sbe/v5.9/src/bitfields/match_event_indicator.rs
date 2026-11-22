@@ -63,11 +63,11 @@ impl MatchEventIndicator {
         self.0 & 0x20 != 0
     }
 
-    /// Reserved (bit 6)
-    /// Reserved
+    /// Reserved 7 (bit 6)
+    /// 1 reserved bit
     #[inline]
     #[must_use]
-    pub const fn reserved(&self) -> bool {
+    pub const fn reserved_7(&self) -> bool {
         self.0 & 0x40 != 0
     }
 

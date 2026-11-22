@@ -20,8 +20,9 @@ pub struct MdIncrementalRefreshDailyStatisticsLegacy {
     /// Match Event Indicator
     /// MatchEventIndicator bit set
     pub match_event_indicator: bitfields::MatchEventIndicator,
-    /// Incremental Refresh Daily Statistics Group rows
-    pub incremental_refresh_daily_statistics_group: Vec<IncrementalRefreshDailyStatisticsGroup>,
+    /// Incremental Refresh Daily Statistics Legacy Group rows
+    pub incremental_refresh_daily_statistics_legacy_group:
+        Vec<IncrementalRefreshDailyStatisticsLegacyGroup>,
 }
 
 impl MdIncrementalRefreshDailyStatisticsLegacy {
@@ -38,8 +39,8 @@ impl MdIncrementalRefreshDailyStatisticsLegacy {
         Self {
             transact_time: view.transact_time(),
             match_event_indicator: view.match_event_indicator(),
-            incremental_refresh_daily_statistics_group: view
-                .incremental_refresh_daily_statistics_group(root_block)
+            incremental_refresh_daily_statistics_legacy_group: view
+                .incremental_refresh_daily_statistics_legacy_group(root_block)
                 .map(Into::into)
                 .collect(),
         }

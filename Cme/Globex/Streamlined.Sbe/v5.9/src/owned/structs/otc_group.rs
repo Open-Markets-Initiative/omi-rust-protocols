@@ -77,8 +77,8 @@ pub struct OtcGroup {
     /// Indicates Market Data Entry Date
     pub md_entry_date: Option<i32>,
     /// Open Close Settl Flag
-    /// Indicates whether the price is preliminary or previous day
-    pub open_close_settl_flag: Option<i8>,
+    /// Flag that identifies a market data entry
+    pub open_close_settl_flag: Option<u8>,
     /// Price Type
     /// Valid price types for intraday trade
     pub price_type: Option<u16>,

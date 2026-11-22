@@ -58,12 +58,12 @@ impl<'a> MassQuoteRequestEntriesGroup<'a> {
         u32::from_le_bytes(self.data[12..16].try_into().unwrap())
     }
 
-    /// Side Side
+    /// Quote Side
     /// Quote side
     #[inline]
-    pub fn side_side(&self) -> Result<crate::enums::SideSide, u8> {
+    pub fn quote_side(&self) -> Result<crate::enums::QuoteSide, u8> {
         let raw = self.data[16];
-        crate::enums::SideSide::from_raw(raw)
+        crate::enums::QuoteSide::from_raw(raw)
     }
 
     /// Quote Entry Id

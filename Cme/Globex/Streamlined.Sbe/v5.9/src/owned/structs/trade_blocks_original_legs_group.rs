@@ -34,21 +34,21 @@ pub struct TradeBlocksOriginalLegsGroup {
     /// Leg Maturity Date
     /// Multileg instrument's individual security's leg MaturityDate
     pub leg_maturity_date: Option<u16>,
-    /// Leg Strike Price Pricenull
+    /// Leg Strike Price
     /// Multileg instrument's individual security's StrikePrice
-    pub leg_strike_price_pricenull: Option<decimal::Decimal<-7>>,
+    pub leg_strike_price: Option<decimal::Decimal<-7>>,
     /// Leg Unit Of Measure
     /// Multileg instrument's individual security's leg UnitOfMeasure
     pub leg_unit_of_measure: Option<String>,
-    /// Leg Unit Of Measure Qty Pricenull
+    /// Leg Unit Of Measure Qty
     /// Multileg instrument's individual security's leg UnitOfMeasureQty
-    pub leg_unit_of_measure_qty_pricenull: Option<decimal::Decimal<-7>>,
+    pub leg_unit_of_measure_qty: Option<decimal::Decimal<-7>>,
     /// Leg Security Exchange
     /// Multileg instrument's individual security's leg SecurityExchange
     pub leg_security_exchange: Option<String>,
-    /// Leg Ratio Qty u Int 16 Null
+    /// Leg Ratio Qty
     /// The ratio of quantity for this individual leg relative to the entire multileg security
-    pub leg_ratio_qty_u_int_16_null: Option<u16>,
+    pub leg_ratio_qty: Option<u16>,
     /// Leg Side
     /// The side of this individual leg (multileg security)
     pub leg_side: Option<u8>,
@@ -79,11 +79,11 @@ impl From<Borrowed<'_>> for TradeBlocksOriginalLegsGroup {
             leg_security_type: view.leg_security_type().as_str().map(String::from),
             leg_maturity_month_year: view.leg_maturity_month_year().into(),
             leg_maturity_date: view.leg_maturity_date(),
-            leg_strike_price_pricenull: view.leg_strike_price_pricenull(),
+            leg_strike_price: view.leg_strike_price(),
             leg_unit_of_measure: view.leg_unit_of_measure().as_str().map(String::from),
-            leg_unit_of_measure_qty_pricenull: view.leg_unit_of_measure_qty_pricenull(),
+            leg_unit_of_measure_qty: view.leg_unit_of_measure_qty(),
             leg_security_exchange: view.leg_security_exchange().as_str().map(String::from),
-            leg_ratio_qty_u_int_16_null: view.leg_ratio_qty_u_int_16_null(),
+            leg_ratio_qty: view.leg_ratio_qty(),
             leg_side: view.leg_side(),
             leg_put_or_call: view.leg_put_or_call(),
             leg_unit_of_measure_currency: view

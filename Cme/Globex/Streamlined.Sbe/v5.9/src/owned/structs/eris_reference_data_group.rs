@@ -26,8 +26,8 @@ pub struct ErisReferenceDataGroup {
     /// Number of entries in Market Data message.
     pub md_entry_px_decimal_optional: MdEntryPxDecimalOptional,
     /// Open Close Settl Flag
-    /// Indicates whether the price is preliminary or previous day
-    pub open_close_settl_flag: Option<i8>,
+    /// Flag that identifies a market data entry
+    pub open_close_settl_flag: Option<u8>,
     /// Settl Price Type
     /// SettlPriceType bit set
     pub settl_price_type: bitfields::SettlPriceType,

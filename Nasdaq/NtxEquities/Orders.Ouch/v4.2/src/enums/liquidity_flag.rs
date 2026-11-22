@@ -11,13 +11,13 @@ pub enum LiquidityFlag {
     /// Removed
     Removed,
     /// Non-displayed adding liquidity
-    NonDisplayed,
+    NonDisplayedAndAddedLiquidity,
     /// Removed liquidity at a midpoint
-    Removed2,
+    RemovedLiquidityAtAMidpoint,
     /// Added liquidity via a midpoint order
-    Added2,
+    AddedLiquidityViaAMidpointOrder,
     /// RPI (Retail Price Improving) order provides liquidity
-    Rpi,
+    RpiOrderProvidesLiquidity,
     /// RMO Retail Order removes RPI liquidity
     RmoRetailOrderRemovesRpiLiquidity,
     /// RMO Retail Order removes price improving non-displayed liquidity other than RPI liquidity
@@ -41,10 +41,10 @@ impl LiquidityFlag {
         match value {
             b'A' => Ok(Self::Added),
             b'R' => Ok(Self::Removed),
-            b'J' => Ok(Self::NonDisplayed),
-            b'm' => Ok(Self::Removed2),
-            b'k' => Ok(Self::Added2),
-            b'j' => Ok(Self::Rpi),
+            b'J' => Ok(Self::NonDisplayedAndAddedLiquidity),
+            b'm' => Ok(Self::RemovedLiquidityAtAMidpoint),
+            b'k' => Ok(Self::AddedLiquidityViaAMidpointOrder),
+            b'j' => Ok(Self::RpiOrderProvidesLiquidity),
             b'r' => Ok(Self::RmoRetailOrderRemovesRpiLiquidity),
             b't' => Ok(
                 Self::RmoRetailOrderRemovesPriceImprovingNonDisplayedLiquidityOtherThanRpiLiquidity,

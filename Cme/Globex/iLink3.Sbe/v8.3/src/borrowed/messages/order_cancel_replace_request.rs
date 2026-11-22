@@ -195,6 +195,7 @@ impl<'a> OrderCancelReplaceRequest<'a> {
 
     /// Time In Force
     /// Specifies how long the order remains in effect
+    /// Null sentinel: 255
     #[inline]
     pub fn time_in_force(&self) -> Result<crate::enums::TimeInForce, u8> {
         let raw = self.data[117];

@@ -18,9 +18,9 @@ pub struct OperationalHaltMessage {
     /// Timestamp
     /// Timestamp
     pub timestamp: u64,
-    /// Stock Alpha 8
+    /// Stock
     /// Denotes the security symbol for the issue in Nasdaq execution system.
-    pub stock_alpha_8: Option<String>,
+    pub stock: Option<String>,
     /// Market Code
     /// Market Code.
     pub market_code: Result<enums::MarketCode, u8>,
@@ -43,7 +43,7 @@ impl From<Borrowed<'_>> for OperationalHaltMessage {
         Self {
             tracking_number: view.tracking_number(),
             timestamp: view.timestamp(),
-            stock_alpha_8: view.stock_alpha_8().as_str().map(String::from),
+            stock: view.stock().as_str().map(String::from),
             market_code: view.market_code(),
             operational_halt_action: view.operational_halt_action(),
         }

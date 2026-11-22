@@ -117,17 +117,14 @@ impl<'a> MdInstrumentDefinitionIndices<'a> {
         Some((offset.checked_add(4)?, stride, rows))
     }
 
-    /// Events Group rows; `root_block` is the wire root block length
+    /// Indices Events Group rows; `root_block` is the wire root block length
     /// from the message header (the walker's `Framed::root_block`).
     #[inline]
     #[must_use]
-    pub fn events_group(
-        &self,
-        root_block: usize,
-    ) -> MdInstrumentDefinitionIndicesEventsGroupRows<'a> {
-        let bounds = Self::events_group_bounds(self.data, root_block);
+    pub fn indices_events_group(&self, root_block: usize) -> IndicesEventsGroupRows<'a> {
+        let bounds = Self::indices_events_group_bounds(self.data, root_block);
         let (offset, stride, remaining) = bounds.unwrap_or((0, 0, 0));
-        MdInstrumentDefinitionIndicesEventsGroupRows {
+        IndicesEventsGroupRows {
             data: self.data,
             offset,
             stride,
@@ -135,7 +132,10 @@ impl<'a> MdInstrumentDefinitionIndices<'a> {
         }
     }
 
-    fn events_group_bounds(data: &[u8], root_block: usize) -> Option<(usize, usize, usize)> {
+    fn indices_events_group_bounds(
+        data: &[u8],
+        root_block: usize,
+    ) -> Option<(usize, usize, usize)> {
         let mut offset = root_block;
         // Skip prior group: Inst Attrib Group
         let raw = u16::from_le_bytes(data.get(offset..offset + 2)?.try_into().ok()?);
@@ -146,8 +146,9 @@ impl<'a> MdInstrumentDefinitionIndices<'a> {
         offset = offset.checked_add(rows.checked_mul(block)?)?;
         let raw = u16::from_le_bytes(data.get(offset..offset + 2)?.try_into().ok()?);
         let stride = usize::from(raw);
-        let rows = usize::from(*data.get(offset + 2)?);
-        Some((offset.checked_add(3)?, stride, rows))
+        let raw = u16::from_le_bytes(data.get(offset + 2..offset + 4)?.try_into().ok()?);
+        let rows = usize::from(raw);
+        Some((offset.checked_add(4)?, stride, rows))
     }
 }
 
@@ -174,25 +175,25 @@ impl<'a> Iterator for InstAttribGroupRows<'a> {
     }
 }
 
-/// Events Group row iterator — empty on malformed dimensions.
+/// Indices Events Group row iterator — empty on malformed dimensions.
 #[derive(Debug, Clone)]
-pub struct MdInstrumentDefinitionIndicesEventsGroupRows<'a> {
+pub struct IndicesEventsGroupRows<'a> {
     data: &'a [u8],
     offset: usize,
     stride: usize,
     remaining: usize,
 }
 
-impl<'a> Iterator for MdInstrumentDefinitionIndicesEventsGroupRows<'a> {
-    type Item = EventsGroup<'a>;
+impl<'a> Iterator for IndicesEventsGroupRows<'a> {
+    type Item = IndicesEventsGroup<'a>;
 
-    fn next(&mut self) -> Option<EventsGroup<'a>> {
+    fn next(&mut self) -> Option<IndicesEventsGroup<'a>> {
         if self.remaining == 0 {
             return None;
         }
         let data = self.data.get(self.offset..)?;
         self.offset = self.offset.checked_add(self.stride)?;
         self.remaining -= 1;
-        EventsGroup::parse(data).ok()
+        IndicesEventsGroup::parse(data).ok()
     }
 }

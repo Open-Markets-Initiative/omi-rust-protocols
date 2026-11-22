@@ -20,8 +20,9 @@ pub struct MdIncrementalRefreshLimitsBandingLegacy {
     /// Match Event Indicator
     /// MatchEventIndicator bit set
     pub match_event_indicator: bitfields::MatchEventIndicator,
-    /// Incremental Refresh Limits Banding Group rows
-    pub incremental_refresh_limits_banding_group: Vec<IncrementalRefreshLimitsBandingGroup>,
+    /// Incremental Refresh Limits Banding Legacy Group rows
+    pub incremental_refresh_limits_banding_legacy_group:
+        Vec<IncrementalRefreshLimitsBandingLegacyGroup>,
 }
 
 impl MdIncrementalRefreshLimitsBandingLegacy {
@@ -38,8 +39,8 @@ impl MdIncrementalRefreshLimitsBandingLegacy {
         Self {
             transact_time: view.transact_time(),
             match_event_indicator: view.match_event_indicator(),
-            incremental_refresh_limits_banding_group: view
-                .incremental_refresh_limits_banding_group(root_block)
+            incremental_refresh_limits_banding_legacy_group: view
+                .incremental_refresh_limits_banding_legacy_group(root_block)
                 .map(Into::into)
                 .collect(),
         }

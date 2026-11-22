@@ -241,12 +241,12 @@ impl<'a> OtcGroup<'a> {
     }
 
     /// Open Close Settl Flag
-    /// Indicates whether the price is preliminary or previous day
-    /// Null sentinel: 127
+    /// Flag that identifies a market data entry
+    /// Null sentinel: 255
     #[inline]
-    pub fn open_close_settl_flag(&self) -> Option<i8> {
-        let raw = self.data[148] as i8;
-        if raw == 127 {
+    pub fn open_close_settl_flag(&self) -> Option<u8> {
+        let raw = self.data[148];
+        if raw == 255 {
             return None;
         }
         Some(raw)

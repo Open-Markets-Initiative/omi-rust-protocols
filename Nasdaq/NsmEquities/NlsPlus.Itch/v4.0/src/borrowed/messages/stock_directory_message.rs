@@ -51,7 +51,7 @@ impl<'a> StockDirectoryMessage<'a> {
     }
 
     /// Stock
-    /// Denotes the security symbol for the issue in the Nasdaq execution system.
+    /// Denotes the security symbol for the issue in Nasdaq execution system.
     #[inline]
     #[must_use]
     pub fn stock(&self) -> crate::borrowed::text::Text<'_, 0x20> {

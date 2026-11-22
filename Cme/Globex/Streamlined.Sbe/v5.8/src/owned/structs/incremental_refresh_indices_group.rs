@@ -28,9 +28,9 @@ pub struct IncrementalRefreshIndicesGroup {
     /// Symbol
     /// Instrument Name or Symbol.
     pub symbol: Option<String>,
-    /// Open Close Settl Flag
+    /// Indices Open Close Settl Flag
     /// Indicates whether the price is preliminary or previous day
-    pub open_close_settl_flag: Option<i8>,
+    pub indices_open_close_settl_flag: Option<i8>,
     /// Yield Type
     /// Type of yield
     pub yield_type: Option<String>,
@@ -77,7 +77,7 @@ impl From<Borrowed<'_>> for IncrementalRefreshIndicesGroup {
             md_entry_px_decimal: view.md_entry_px_decimal().into(),
             md_entry_size_optional: view.md_entry_size_optional(),
             symbol: view.symbol().as_str().map(String::from),
-            open_close_settl_flag: view.open_close_settl_flag(),
+            indices_open_close_settl_flag: view.indices_open_close_settl_flag(),
             yield_type: view.yield_type().as_str().map(String::from),
             r#yield: view.r#yield().into(),
             net_chg_prev_day: view.net_chg_prev_day().into(),

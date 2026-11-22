@@ -176,8 +176,8 @@ pub use market_data_request_security_groups::*;
 mod maturity_month_year;
 pub use maturity_month_year::*;
 
-mod message;
-pub use message::*;
+mod mdp3_message;
+pub use mdp3_message::*;
 
 mod message_header;
 pub use message_header::*;

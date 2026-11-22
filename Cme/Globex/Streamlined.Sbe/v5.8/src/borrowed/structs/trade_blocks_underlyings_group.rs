@@ -59,11 +59,11 @@ impl<'a> TradeBlocksUnderlyingsGroup<'a> {
         crate::borrowed::text::Text(&self.data[55..64])
     }
 
-    /// Underlying Security Exchange String 4
+    /// Underlying Security Exchange
     /// Underlying Security's SecurityExchange
     #[inline]
     #[must_use]
-    pub fn underlying_security_exchange_string_4(&self) -> crate::borrowed::text::Text<'_, 0x00> {
+    pub fn underlying_security_exchange(&self) -> crate::borrowed::text::Text<'_, 0x00> {
         crate::borrowed::text::Text(&self.data[64..68])
     }
 }

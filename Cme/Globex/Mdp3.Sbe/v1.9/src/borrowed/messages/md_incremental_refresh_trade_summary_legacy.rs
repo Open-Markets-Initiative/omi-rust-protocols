@@ -52,17 +52,18 @@ impl<'a> MdIncrementalRefreshTradeSummaryLegacy<'a> {
         MatchEventIndicator(self.data[8])
     }
 
-    /// Incremental Refresh Trade Summary Group rows; `root_block` is the wire root block length
+    /// Incremental Refresh Trade Summary Legacy Group rows; `root_block` is the wire root block length
     /// from the message header (the walker's `Framed::root_block`).
     #[inline]
     #[must_use]
-    pub fn incremental_refresh_trade_summary_group(
+    pub fn incremental_refresh_trade_summary_legacy_group(
         &self,
         root_block: usize,
-    ) -> MdIncrementalRefreshTradeSummaryLegacyIncrementalRefreshTradeSummaryGroupRows<'a> {
-        let bounds = Self::incremental_refresh_trade_summary_group_bounds(self.data, root_block);
+    ) -> IncrementalRefreshTradeSummaryLegacyGroupRows<'a> {
+        let bounds =
+            Self::incremental_refresh_trade_summary_legacy_group_bounds(self.data, root_block);
         let (offset, stride, remaining) = bounds.unwrap_or((0, 0, 0));
-        MdIncrementalRefreshTradeSummaryLegacyIncrementalRefreshTradeSummaryGroupRows {
+        IncrementalRefreshTradeSummaryLegacyGroupRows {
             data: self.data,
             offset,
             stride,
@@ -70,7 +71,7 @@ impl<'a> MdIncrementalRefreshTradeSummaryLegacy<'a> {
         }
     }
 
-    fn incremental_refresh_trade_summary_group_bounds(
+    fn incremental_refresh_trade_summary_legacy_group_bounds(
         data: &[u8],
         root_block: usize,
     ) -> Option<(usize, usize, usize)> {
@@ -106,7 +107,7 @@ impl<'a> MdIncrementalRefreshTradeSummaryLegacy<'a> {
         root_block: usize,
     ) -> Option<(usize, usize, usize)> {
         let mut offset = root_block;
-        // Skip prior group: Incremental Refresh Trade Summary Group
+        // Skip prior group: Incremental Refresh Trade Summary Legacy Group
         let raw = u16::from_le_bytes(data.get(offset..offset + 2)?.try_into().ok()?);
         let block = usize::from(raw);
         let rows = usize::from(*data.get(offset + 2)?);
@@ -119,28 +120,26 @@ impl<'a> MdIncrementalRefreshTradeSummaryLegacy<'a> {
     }
 }
 
-/// Incremental Refresh Trade Summary Group row iterator — empty on malformed dimensions.
+/// Incremental Refresh Trade Summary Legacy Group row iterator — empty on malformed dimensions.
 #[derive(Debug, Clone)]
-pub struct MdIncrementalRefreshTradeSummaryLegacyIncrementalRefreshTradeSummaryGroupRows<'a> {
+pub struct IncrementalRefreshTradeSummaryLegacyGroupRows<'a> {
     data: &'a [u8],
     offset: usize,
     stride: usize,
     remaining: usize,
 }
 
-impl<'a> Iterator
-    for MdIncrementalRefreshTradeSummaryLegacyIncrementalRefreshTradeSummaryGroupRows<'a>
-{
-    type Item = IncrementalRefreshTradeSummaryGroup<'a>;
+impl<'a> Iterator for IncrementalRefreshTradeSummaryLegacyGroupRows<'a> {
+    type Item = IncrementalRefreshTradeSummaryLegacyGroup<'a>;
 
-    fn next(&mut self) -> Option<IncrementalRefreshTradeSummaryGroup<'a>> {
+    fn next(&mut self) -> Option<IncrementalRefreshTradeSummaryLegacyGroup<'a>> {
         if self.remaining == 0 {
             return None;
         }
         let data = self.data.get(self.offset..)?;
         self.offset = self.offset.checked_add(self.stride)?;
         self.remaining -= 1;
-        IncrementalRefreshTradeSummaryGroup::parse(data).ok()
+        IncrementalRefreshTradeSummaryLegacyGroup::parse(data).ok()
     }
 }
 

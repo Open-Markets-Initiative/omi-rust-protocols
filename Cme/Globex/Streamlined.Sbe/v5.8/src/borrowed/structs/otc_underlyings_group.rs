@@ -59,13 +59,11 @@ impl<'a> OtcUnderlyingsGroup<'a> {
         crate::borrowed::text::Text(&self.data[55..64])
     }
 
-    /// Underlying Security Exchange Security Exchange
-    /// Underlying Security's SecurityExchange and it can be used to identify the underlying security
+    /// Underlying Security Exchange
+    /// Underlying Security's SecurityExchange
     #[inline]
     #[must_use]
-    pub fn underlying_security_exchange_security_exchange(
-        &self,
-    ) -> crate::borrowed::text::Text<'_, 0x00> {
+    pub fn underlying_security_exchange(&self) -> crate::borrowed::text::Text<'_, 0x00> {
         crate::borrowed::text::Text(&self.data[64..68])
     }
 }

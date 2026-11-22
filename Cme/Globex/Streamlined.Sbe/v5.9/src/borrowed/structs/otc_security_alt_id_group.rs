@@ -32,11 +32,11 @@ impl<'a> OtcSecurityAltIdGroup<'a> {
         &self.data[..Self::SIZE]
     }
 
-    /// Security Alt I D String Length 50
+    /// Security Alt Id 50
     /// Expanded instrument description.
     #[inline]
     #[must_use]
-    pub fn security_alt_i_d_string_length_50(&self) -> crate::borrowed::text::Text<'_, 0x00> {
+    pub fn security_alt_id_50(&self) -> crate::borrowed::text::Text<'_, 0x00> {
         crate::borrowed::text::Text(&self.data[0..50])
     }
 

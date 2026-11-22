@@ -21,9 +21,9 @@ pub struct TradeBlocksUnderlyingsGroup {
     /// Underlying Security Type
     /// Underlying Security's SecurityType
     pub underlying_security_type: Option<String>,
-    /// Underlying Security Exchange String 4
+    /// Underlying Security Exchange
     /// Underlying Security's SecurityExchange
-    pub underlying_security_exchange_string_4: Option<String>,
+    pub underlying_security_exchange: Option<String>,
 }
 
 impl TradeBlocksUnderlyingsGroup {
@@ -41,8 +41,8 @@ impl From<Borrowed<'_>> for TradeBlocksUnderlyingsGroup {
             underlying_symbol: view.underlying_symbol().as_str().map(String::from),
             underlying_maturity_month_year: view.underlying_maturity_month_year().into(),
             underlying_security_type: view.underlying_security_type().as_str().map(String::from),
-            underlying_security_exchange_string_4: view
-                .underlying_security_exchange_string_4()
+            underlying_security_exchange: view
+                .underlying_security_exchange()
                 .as_str()
                 .map(String::from),
         }

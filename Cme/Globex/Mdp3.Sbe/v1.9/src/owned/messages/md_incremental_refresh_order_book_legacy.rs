@@ -20,8 +20,8 @@ pub struct MdIncrementalRefreshOrderBookLegacy {
     /// Match Event Indicator
     /// MatchEventIndicator bit set
     pub match_event_indicator: bitfields::MatchEventIndicator,
-    /// Incremental Refresh Order Book Group rows
-    pub incremental_refresh_order_book_group: Vec<IncrementalRefreshOrderBookGroup>,
+    /// Incremental Refresh Order Book Legacy Group rows
+    pub incremental_refresh_order_book_legacy_group: Vec<IncrementalRefreshOrderBookLegacyGroup>,
 }
 
 impl MdIncrementalRefreshOrderBookLegacy {
@@ -38,8 +38,8 @@ impl MdIncrementalRefreshOrderBookLegacy {
         Self {
             transact_time: view.transact_time(),
             match_event_indicator: view.match_event_indicator(),
-            incremental_refresh_order_book_group: view
-                .incremental_refresh_order_book_group(root_block)
+            incremental_refresh_order_book_legacy_group: view
+                .incremental_refresh_order_book_legacy_group(root_block)
                 .map(Into::into)
                 .collect(),
         }

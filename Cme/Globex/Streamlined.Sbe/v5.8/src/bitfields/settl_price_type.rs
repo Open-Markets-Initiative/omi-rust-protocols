@@ -39,36 +39,12 @@ impl SettlPriceType {
         self.0 & 0x4 != 0
     }
 
-    /// Reserved Bits (bit 3)
-    /// ReservedBits
+    /// Reserved 4 To 7 (bits 3..7)
+    /// 4 reserved bits
     #[inline]
     #[must_use]
-    pub const fn reserved_bits(&self) -> bool {
-        self.0 & 0x8 != 0
-    }
-
-    /// Unused Settl Price Type 4 (bit 4)
-    /// Unused SettlPriceType 4
-    #[inline]
-    #[must_use]
-    pub const fn unused_settl_price_type_4(&self) -> bool {
-        self.0 & 0x10 != 0
-    }
-
-    /// Unused Settl Price Type 5 (bit 5)
-    /// Unused SettlPriceType 5
-    #[inline]
-    #[must_use]
-    pub const fn unused_settl_price_type_5(&self) -> bool {
-        self.0 & 0x20 != 0
-    }
-
-    /// Unused Settl Price Type 6 (bit 6)
-    /// Unused SettlPriceType 6
-    #[inline]
-    #[must_use]
-    pub const fn unused_settl_price_type_6(&self) -> bool {
-        self.0 & 0x40 != 0
+    pub const fn reserved_4_to_7(&self) -> u8 {
+        (self.0 >> 3) & 0xf
     }
 
     /// Null Value (bit 7)

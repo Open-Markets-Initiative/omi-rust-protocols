@@ -20,8 +20,8 @@ pub use incremental_refresh_ticker_group::*;
 mod incremental_refresh_ticker_groups;
 pub use incremental_refresh_ticker_groups::*;
 
-mod message;
-pub use message::*;
+mod mdp3_message;
+pub use mdp3_message::*;
 
 mod message_header;
 pub use message_header::*;

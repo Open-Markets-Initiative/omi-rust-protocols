@@ -79,11 +79,11 @@ impl<'a> IncrementalRefreshIndicesGroup<'a> {
         crate::borrowed::text::Text(&self.data[22..72])
     }
 
-    /// Open Close Settl Flag
+    /// Indices Open Close Settl Flag
     /// Indicates whether the price is preliminary or previous day
     /// Null sentinel: 127
     #[inline]
-    pub fn open_close_settl_flag(&self) -> Option<i8> {
+    pub fn indices_open_close_settl_flag(&self) -> Option<i8> {
         let raw = self.data[72] as i8;
         if raw == 127 {
             return None;

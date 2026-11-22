@@ -32,14 +32,12 @@ impl<'a> IncrementalRefreshSpectrumGroup<'a> {
         &self.data[..Self::SIZE]
     }
 
-    /// Md Entry Type Spectrum Entry Type
+    /// Spectrum Md Entry Type
     /// Market Data entry type, identifies the element
     #[inline]
-    pub fn md_entry_type_spectrum_entry_type(
-        &self,
-    ) -> Result<crate::enums::MdEntryTypeSpectrumEntryType, u8> {
+    pub fn spectrum_md_entry_type(&self) -> Result<crate::enums::SpectrumMdEntryType, u8> {
         let raw = self.data[0];
-        crate::enums::MdEntryTypeSpectrumEntryType::from_raw(raw)
+        crate::enums::SpectrumMdEntryType::from_raw(raw)
     }
 
     /// Financial Instrument Full Name

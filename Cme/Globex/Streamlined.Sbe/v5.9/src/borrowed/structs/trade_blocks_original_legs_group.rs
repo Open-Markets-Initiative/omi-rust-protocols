@@ -99,12 +99,12 @@ impl<'a> TradeBlocksOriginalLegsGroup<'a> {
         Some(raw)
     }
 
-    /// Leg Strike Price Pricenull
+    /// Leg Strike Price
     /// Multileg instrument's individual security's StrikePrice
     /// Implied decimal, scale -7
     /// Null sentinel: 9223372036854775807
     #[inline]
-    pub fn leg_strike_price_pricenull(&self) -> Option<crate::decimal::Decimal<-7>> {
+    pub fn leg_strike_price(&self) -> Option<crate::decimal::Decimal<-7>> {
         let raw = i64::from_le_bytes(self.data[103..111].try_into().unwrap());
         if raw == 9223372036854775807 {
             return None;
@@ -120,12 +120,12 @@ impl<'a> TradeBlocksOriginalLegsGroup<'a> {
         crate::borrowed::text::Text(&self.data[111..116])
     }
 
-    /// Leg Unit Of Measure Qty Pricenull
+    /// Leg Unit Of Measure Qty
     /// Multileg instrument's individual security's leg UnitOfMeasureQty
     /// Implied decimal, scale -7
     /// Null sentinel: 9223372036854775807
     #[inline]
-    pub fn leg_unit_of_measure_qty_pricenull(&self) -> Option<crate::decimal::Decimal<-7>> {
+    pub fn leg_unit_of_measure_qty(&self) -> Option<crate::decimal::Decimal<-7>> {
         let raw = i64::from_le_bytes(self.data[116..124].try_into().unwrap());
         if raw == 9223372036854775807 {
             return None;
@@ -141,11 +141,11 @@ impl<'a> TradeBlocksOriginalLegsGroup<'a> {
         crate::borrowed::text::Text(&self.data[124..128])
     }
 
-    /// Leg Ratio Qty u Int 16 Null
+    /// Leg Ratio Qty
     /// The ratio of quantity for this individual leg relative to the entire multileg security
     /// Null sentinel: 65535
     #[inline]
-    pub fn leg_ratio_qty_u_int_16_null(&self) -> Option<u16> {
+    pub fn leg_ratio_qty(&self) -> Option<u16> {
         let raw = u16::from_le_bytes(self.data[128..130].try_into().unwrap());
         if raw == 65535 {
             return None;

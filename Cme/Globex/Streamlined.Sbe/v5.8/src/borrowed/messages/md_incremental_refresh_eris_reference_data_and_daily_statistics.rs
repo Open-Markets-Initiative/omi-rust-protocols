@@ -65,7 +65,7 @@ impl<'a> MdIncrementalRefreshErisReferenceDataAndDailyStatistics<'a> {
 
     // Unsupported repeating group — Eris Reference Data Group: contains a nested counted group; per-row recursion not yet emitted
 
-    // Unsupported repeating group — Eris Security Alt Id Group: skipped — a preceding group is unsupported, its offset is unknowable
+    // Unsupported repeating group — Eris Reference Data Security Alt Id Group: skipped — a preceding group is unsupported, its offset is unknowable
 
     // Unsupported repeating group — Incremental Refresh Eris Related Instruments Group: skipped — a preceding group is unsupported, its offset is unknowable
 

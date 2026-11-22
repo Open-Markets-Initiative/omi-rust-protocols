@@ -37,8 +37,8 @@ pub struct MdInstrumentDefinitionIndices {
     pub appl_id: Option<u16>,
     /// Inst Attrib Group rows
     pub inst_attrib_group: Vec<InstAttribGroup>,
-    /// Events Group rows
-    pub events_group: Vec<EventsGroup>,
+    /// Indices Events Group rows
+    pub indices_events_group: Vec<IndicesEventsGroup>,
 }
 
 impl MdInstrumentDefinitionIndices {
@@ -61,7 +61,10 @@ impl MdInstrumentDefinitionIndices {
             md_feed_type: view.md_feed_type().as_str().map(String::from),
             appl_id: view.appl_id(),
             inst_attrib_group: view.inst_attrib_group(root_block).map(Into::into).collect(),
-            events_group: view.events_group(root_block).map(Into::into).collect(),
+            indices_events_group: view
+                .indices_events_group(root_block)
+                .map(Into::into)
+                .collect(),
         }
     }
 }

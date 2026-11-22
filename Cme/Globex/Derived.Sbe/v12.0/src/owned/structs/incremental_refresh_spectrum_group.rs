@@ -14,9 +14,9 @@ use crate::timestamp;
 /// Number of entries in Market Data message
 #[derive(Debug, Clone)]
 pub struct IncrementalRefreshSpectrumGroup {
-    /// Md Entry Type Spectrum Entry Type
+    /// Spectrum Md Entry Type
     /// Market Data entry type, identifies the element
-    pub md_entry_type_spectrum_entry_type: Result<enums::MdEntryTypeSpectrumEntryType, u8>,
+    pub spectrum_md_entry_type: Result<enums::SpectrumMdEntryType, u8>,
     /// Financial Instrument Full Name
     /// Financial instrument long name
     pub financial_instrument_full_name: Option<String>,
@@ -52,7 +52,7 @@ impl From<Borrowed<'_>> for IncrementalRefreshSpectrumGroup {
     #[inline]
     fn from(view: Borrowed<'_>) -> Self {
         Self {
-            md_entry_type_spectrum_entry_type: view.md_entry_type_spectrum_entry_type(),
+            spectrum_md_entry_type: view.spectrum_md_entry_type(),
             financial_instrument_full_name: view
                 .financial_instrument_full_name()
                 .as_str()

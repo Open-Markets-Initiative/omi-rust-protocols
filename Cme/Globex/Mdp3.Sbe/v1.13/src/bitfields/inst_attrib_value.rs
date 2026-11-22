@@ -239,11 +239,11 @@ impl InstAttribValue {
         self.0 & 0x8000000 != 0
     }
 
-    /// Reserved 4 (bits 28..32)
+    /// Reserved 29 To 32 (bits 28..32)
     /// 4 reserved bits
     #[inline]
     #[must_use]
-    pub const fn reserved_4(&self) -> u32 {
+    pub const fn reserved_29_to_32(&self) -> u32 {
         (self.0 >> 28) & 0xf
     }
 }

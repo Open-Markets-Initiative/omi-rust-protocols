@@ -20,8 +20,9 @@ pub struct MdIncrementalRefreshTradeSummaryLegacy {
     /// Match Event Indicator
     /// MatchEventIndicator bit set
     pub match_event_indicator: bitfields::MatchEventIndicator,
-    /// Incremental Refresh Trade Summary Group rows
-    pub incremental_refresh_trade_summary_group: Vec<IncrementalRefreshTradeSummaryGroup>,
+    /// Incremental Refresh Trade Summary Legacy Group rows
+    pub incremental_refresh_trade_summary_legacy_group:
+        Vec<IncrementalRefreshTradeSummaryLegacyGroup>,
     /// Incremental Refresh Trade Summary Order Id Group rows
     pub incremental_refresh_trade_summary_order_id_group:
         Vec<IncrementalRefreshTradeSummaryOrderIdGroup>,
@@ -41,8 +42,8 @@ impl MdIncrementalRefreshTradeSummaryLegacy {
         Self {
             transact_time: view.transact_time(),
             match_event_indicator: view.match_event_indicator(),
-            incremental_refresh_trade_summary_group: view
-                .incremental_refresh_trade_summary_group(root_block)
+            incremental_refresh_trade_summary_legacy_group: view
+                .incremental_refresh_trade_summary_legacy_group(root_block)
                 .map(Into::into)
                 .collect(),
             incremental_refresh_trade_summary_order_id_group: view

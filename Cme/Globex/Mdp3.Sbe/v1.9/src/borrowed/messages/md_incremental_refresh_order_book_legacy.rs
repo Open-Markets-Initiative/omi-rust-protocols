@@ -52,17 +52,18 @@ impl<'a> MdIncrementalRefreshOrderBookLegacy<'a> {
         MatchEventIndicator(self.data[8])
     }
 
-    /// Incremental Refresh Order Book Group rows; `root_block` is the wire root block length
+    /// Incremental Refresh Order Book Legacy Group rows; `root_block` is the wire root block length
     /// from the message header (the walker's `Framed::root_block`).
     #[inline]
     #[must_use]
-    pub fn incremental_refresh_order_book_group(
+    pub fn incremental_refresh_order_book_legacy_group(
         &self,
         root_block: usize,
-    ) -> MdIncrementalRefreshOrderBookLegacyIncrementalRefreshOrderBookGroupRows<'a> {
-        let bounds = Self::incremental_refresh_order_book_group_bounds(self.data, root_block);
+    ) -> IncrementalRefreshOrderBookLegacyGroupRows<'a> {
+        let bounds =
+            Self::incremental_refresh_order_book_legacy_group_bounds(self.data, root_block);
         let (offset, stride, remaining) = bounds.unwrap_or((0, 0, 0));
-        MdIncrementalRefreshOrderBookLegacyIncrementalRefreshOrderBookGroupRows {
+        IncrementalRefreshOrderBookLegacyGroupRows {
             data: self.data,
             offset,
             stride,
@@ -70,7 +71,7 @@ impl<'a> MdIncrementalRefreshOrderBookLegacy<'a> {
         }
     }
 
-    fn incremental_refresh_order_book_group_bounds(
+    fn incremental_refresh_order_book_legacy_group_bounds(
         data: &[u8],
         root_block: usize,
     ) -> Option<(usize, usize, usize)> {
@@ -82,25 +83,25 @@ impl<'a> MdIncrementalRefreshOrderBookLegacy<'a> {
     }
 }
 
-/// Incremental Refresh Order Book Group row iterator — empty on malformed dimensions.
+/// Incremental Refresh Order Book Legacy Group row iterator — empty on malformed dimensions.
 #[derive(Debug, Clone)]
-pub struct MdIncrementalRefreshOrderBookLegacyIncrementalRefreshOrderBookGroupRows<'a> {
+pub struct IncrementalRefreshOrderBookLegacyGroupRows<'a> {
     data: &'a [u8],
     offset: usize,
     stride: usize,
     remaining: usize,
 }
 
-impl<'a> Iterator for MdIncrementalRefreshOrderBookLegacyIncrementalRefreshOrderBookGroupRows<'a> {
-    type Item = IncrementalRefreshOrderBookGroup<'a>;
+impl<'a> Iterator for IncrementalRefreshOrderBookLegacyGroupRows<'a> {
+    type Item = IncrementalRefreshOrderBookLegacyGroup<'a>;
 
-    fn next(&mut self) -> Option<IncrementalRefreshOrderBookGroup<'a>> {
+    fn next(&mut self) -> Option<IncrementalRefreshOrderBookLegacyGroup<'a>> {
         if self.remaining == 0 {
             return None;
         }
         let data = self.data.get(self.offset..)?;
         self.offset = self.offset.checked_add(self.stride)?;
         self.remaining -= 1;
-        IncrementalRefreshOrderBookGroup::parse(data).ok()
+        IncrementalRefreshOrderBookLegacyGroup::parse(data).ok()
     }
 }

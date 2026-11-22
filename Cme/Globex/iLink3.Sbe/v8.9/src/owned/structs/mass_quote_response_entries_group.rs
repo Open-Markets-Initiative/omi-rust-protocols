@@ -22,9 +22,9 @@ pub struct MassQuoteResponseEntriesGroup {
     /// Security Id
     /// Security ID as defined by CME. For the security ID list, see the security definition messages
     pub security_id: i32,
-    /// Side Side
+    /// Quote Side
     /// Quote side
-    pub side_side: Result<enums::SideSide, u8>,
+    pub quote_side: Result<enums::QuoteSide, u8>,
     /// Quote Entry Reject Reason Optional
     /// Reason provided for requested quote entries that are rejected
     pub quote_entry_reject_reason_optional: Option<u8>,
@@ -46,7 +46,7 @@ impl From<Borrowed<'_>> for MassQuoteResponseEntriesGroup {
             quote_entry_id: view.quote_entry_id(),
             quote_set_id: view.quote_set_id(),
             security_id: view.security_id(),
-            side_side: view.side_side(),
+            quote_side: view.quote_side(),
             quote_entry_reject_reason_optional: view.quote_entry_reject_reason_optional(),
         }
     }

@@ -19,7 +19,7 @@ pub enum Display {
     /// Entered as displayed but changed to non-displayed (Priced to comply)
     ChangedToNonDisplayed,
     /// Mid-Point Peg
-    MidPoint,
+    MidPointPeg,
     /// Retail Order Type 1
     RetailOrderType1,
     /// Retail Order Type 2
@@ -39,7 +39,7 @@ impl Display {
             b'P' => Ok(Self::PostOnly),
             b'I' => Ok(Self::ImbalanceOnly),
             b'Z' => Ok(Self::ChangedToNonDisplayed),
-            b'M' => Ok(Self::MidPoint),
+            b'M' => Ok(Self::MidPointPeg),
             b'O' => Ok(Self::RetailOrderType1),
             b'T' => Ok(Self::RetailOrderType2),
             b'Q' => Ok(Self::RetailPriceImprovementOrder),

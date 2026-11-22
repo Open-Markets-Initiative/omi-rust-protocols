@@ -11,12 +11,12 @@ use crate::borrowed::ErisSecurityAltIdGroup as Borrowed;
 /// Number of entries in AltID group.
 #[derive(Debug, Clone)]
 pub struct ErisSecurityAltIdGroup {
-    /// Security Alt Id 50
+    /// Security Alt Id
     /// Expanded instrument description.
-    pub security_alt_id_50: Option<String>,
-    /// Security Alt Id Source Optional
+    pub security_alt_id: Option<String>,
+    /// Security Alt Id Source
     /// Identifies class or source of the SecurityAltID (455) value.
-    pub security_alt_id_source_optional: u8,
+    pub security_alt_id_source: u8,
 }
 
 impl ErisSecurityAltIdGroup {
@@ -31,8 +31,8 @@ impl From<Borrowed<'_>> for ErisSecurityAltIdGroup {
     #[inline]
     fn from(view: Borrowed<'_>) -> Self {
         Self {
-            security_alt_id_50: view.security_alt_id_50().as_str().map(String::from),
-            security_alt_id_source_optional: view.security_alt_id_source_optional(),
+            security_alt_id: view.security_alt_id().as_str().map(String::from),
+            security_alt_id_source: view.security_alt_id_source(),
         }
     }
 }
